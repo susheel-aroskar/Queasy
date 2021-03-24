@@ -1,0 +1,53 @@
+logging:
+  level: INFO
+  loggers:
+    org.queasy: DEBUG
+
+
+database:
+  driverClass: org.sqlite.JDBC
+  url: 'jdbc:sqlite:/tmp/queue.db'
+  validationQueryTimeout: 1s
+  initialSize: 2
+  minSize: 2
+  maxSize: 1024
+  maxWaitForConnection: 1s
+  checkConnectionWhileIdle: false
+  autoCommentsEnabled: false
+  evictionInterval: 60s
+  validationInterval: 60s
+  minIdleTime: 10 minute
+  properties:
+    charSet: UTF-8
+
+
+queue:
+  name: q_easy
+  partitionId: 1
+  maxRetention: 90 days
+  maxSize: 10000000
+  ringBufferSize: 1024
+
+
+consumerGroups:
+  default:
+    threadPoolSize: 4
+    selectBatchSize: 512
+
+  highPriorityPayments:
+    threadPoolSize: 4
+    selectBatchSize: 512
+    query: type = 'payment' and priority > 8
+
+
+replication:
+  -
+    partitionId: 2
+    dbURL: 'jdbc:sqlite:/tmp/queue-replica2.db'
+    host: 1.2.3.4
+    port: 8443
+  -
+    partitionId: 3
+    dbURL: 'jdbc:sqlite:/tmp/queue-replica3.db'
+    host: 4.3.2.1
+    port: 8443

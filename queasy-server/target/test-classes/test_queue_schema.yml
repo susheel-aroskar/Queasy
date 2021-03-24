@@ -1,0 +1,67 @@
+# Liquibase DB migration config.
+databaseChangeLog:
+  - changeSet: #Mandatory columns, do not alter
+      id: 1
+      author: Queasy
+      changes:
+
+        - createTable:
+            tableName: queasy_ckpt
+            columns:
+              - column:
+                  name: consumer_group_name
+                  type: varchar(255)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: last_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated
+                  type: datetime
+
+        - createTable:
+            tableName: qeasy_q
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(16)
+              - column:
+                  name: mesg_text
+                  type: text
+              - column:
+                  name: mesg_bin
+                  type: blob
+
+              # Additional columns mapped to message metadata. Can be added by user
+              # Add new change sets to add user defined columns
+              - column:
+                  name: event
+                  type: varchar(255)
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: category
+                  type: varchar(255)
+              - column:
+                  name: priority
+                  type: varchar(32)
+              - column:
+                  name: status
+                  type: varchar(32)
+              - column:
+                  name: v1
+                  type: varchar(255)
+              - column:
+                  name: v2
+                  type: varchar(255)

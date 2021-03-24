@@ -1,0 +1,13 @@
+database:
+  driverClass: org.sqlite.JDBC
+  url: 'jdbc:sqlite:unit-test.db'
+  properties:
+    charSet: UTF-8
+
+
+queue:
+  name: qeasy_q
+  maxSize: 10000
+
+consumerGroups:
+  default:
