@@ -1,0 +1,55 @@
+# Liquibase DB migration config.
+databaseChangeLog:
+  - changeSet: #Mandatory columns, do not alter
+      id: 1
+      author: Queasy
+      changes:
+
+        - createTable:
+            tableName: queasy_checkpoint
+            columns:
+              - column:
+                  name: cg_name
+                  type: varchar(255)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: checkpoint
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ts
+                  type: int
+
+        - createTable:
+            tableName: queasy_q
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: qname
+                  type: varchar(255)
+              - column:
+                  name: type
+                  type: varchar(16)
+              - column:
+                  name: ts
+                  type: int
+              - column:
+                  name: mesg
+                  type: text
+
+        - createIndex:
+            columns:
+              - column:
+                  name: id
+              - column:
+                  name: qname
+            indexName: id_qname_idx
+            tableName: queasy_q

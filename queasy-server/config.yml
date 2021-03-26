@@ -3,6 +3,10 @@ logging:
   loggers:
     org.queasy: DEBUG
 
+maxConnections: 1024
+consumerGroupsThreadPoolSize: 4
+newMessagePollInterval: 200ms
+shutdownGracePeriod: 30s
 
 database:
   driverClass: org.sqlite.JDBC
@@ -22,32 +26,26 @@ database:
 
 
 queue:
-  name: q_easy
-  partitionId: 1
+  tableName: q_easy
   maxRetention: 90 days
   maxSize: 10000000
   ringBufferSize: 1024
+  writeTimeout: 2s
 
 
 consumerGroups:
   default:
-    threadPoolSize: 4
+    queueName: temp
     selectBatchSize: 512
 
-  highPriorityPayments:
-    threadPoolSize: 4
-    selectBatchSize: 512
-    query: type = 'payment' and priority > 8
-
-
-replication:
-  -
-    partitionId: 2
-    dbURL: 'jdbc:sqlite:/tmp/queue-replica2.db'
-    host: 1.2.3.4
-    port: 8443
-  -
-    partitionId: 3
-    dbURL: 'jdbc:sqlite:/tmp/queue-replica3.db'
-    host: 4.3.2.1
-    port: 8443
+#replication:
+#  -
+#    partitionId: 2
+#    dbURL: 'jdbc:sqlite:/tmp/queue-replica2.db'
+#    host: 1.2.3.4
+#    port: 8443
+#  -
+#    partitionId: 3
+#    dbURL: 'jdbc:sqlite:/tmp/queue-replica3.db'
+#    host: 4.3.2.1
+#    port: 8443

@@ -2,6 +2,7 @@ package org.queasy;
 
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
+import io.dropwizard.util.Duration;
 import org.queasy.core.config.ConsumerGroupConfiguration;
 import org.queasy.core.config.QueueConfiguration;
 import org.queasy.core.config.WebSocketConfiguration;
@@ -11,6 +12,31 @@ import javax.validation.constraints.*;
 import java.util.Map;
 
 public class ServerConfiguration extends Configuration {
+
+    /**
+     * Maximum number of producer or writer connections allowed
+     */
+    @NotNull
+    @Min(256)
+    private int maxConnections;
+
+    /**
+     * NUmber of threads used by the consumer group servicing thread pool
+     */
+    @NotNull
+    @Min(2)
+    private int consumerGroupsThreadPoolSize = 8;
+
+    /**
+     * Poll interval to check for new messages. It's a very inexpensive operation,
+     * so 100s or even 10s of millisecond interval is OK
+     */
+    private Duration newMessagePollInterval = Duration.milliseconds(250);
+
+    /**
+     * Maximum time period to wait for graceful shutdown of application
+     */
+    private Duration shutdownGracePeriod = Duration.seconds(60);
 
     /**
      * Database settings
@@ -40,11 +66,39 @@ public class ServerConfiguration extends Configuration {
     @NotNull
     private Map<String, ConsumerGroupConfiguration> consumerGroups;
 
-    /**
-     * Application wide immutable, read only, singleton state
-     */
-    private ReadOnlyAppState readOnlyAppState;
 
+
+    public int getMaxConnections() {
+        return maxConnections;
+    }
+
+    public void setMaxConnections(int maxConnections) {
+        this.maxConnections = maxConnections;
+    }
+
+    public int getConsumerGroupsThreadPoolSize() {
+        return consumerGroupsThreadPoolSize;
+    }
+
+    public void setConsumerGroupsThreadPoolSize(int consumerGroupsThreadPoolSize) {
+        this.consumerGroupsThreadPoolSize = consumerGroupsThreadPoolSize;
+    }
+
+    public Duration getNewMessagePollInterval() {
+        return newMessagePollInterval;
+    }
+
+    public void setNewMessagePollInterval(Duration newMessagePollInterval) {
+        this.newMessagePollInterval = newMessagePollInterval;
+    }
+
+    public Duration getShutdownGracePeriod() {
+        return shutdownGracePeriod;
+    }
+
+    public void setShutdownGracePeriod(Duration shutdownGracePeriod) {
+        this.shutdownGracePeriod = shutdownGracePeriod;
+    }
 
     public DataSourceFactory getDatabase() {
         return database;
@@ -67,18 +121,4 @@ public class ServerConfiguration extends Configuration {
         this.consumerGroups = consumerGroups;
     }
 
-    public ReadOnlyAppState getReadOnlyAppState() {
-        return readOnlyAppState;
-    }
-
-    /**
-     * ReadOnlyAppState is supposed to be immutable once server start up is complete. That's why this method is package
-     * private to ensure it can only be called by ServerApplication - which shares the package space with this class -
-     * during application startup
-     *
-     * @param readOnlyAppState
-     */
-    void setReadOnlyAppState(final ReadOnlyAppState readOnlyAppState) {
-        this.readOnlyAppState = readOnlyAppState;
-    }
 }

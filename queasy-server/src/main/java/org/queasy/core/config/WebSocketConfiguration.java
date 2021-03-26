@@ -1,5 +1,7 @@
 package org.queasy.core.config;
 
+import com.google.common.annotations.VisibleForTesting;
+
 /**
  * @author saroskar
  * Created on: 2021-03-22
@@ -49,6 +51,11 @@ public class WebSocketConfiguration {
 
     public int getInputBufferSize() {
         return inputBufferSize;
+    }
+
+    @VisibleForTesting
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     public String getOrigin() {

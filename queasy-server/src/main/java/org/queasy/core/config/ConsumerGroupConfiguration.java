@@ -1,5 +1,7 @@
 package org.queasy.core.config;
 
+import io.dropwizard.util.Duration;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -8,6 +10,12 @@ import javax.validation.constraints.NotNull;
  * Created on: 2021-03-22
  */
 public class ConsumerGroupConfiguration {
+
+    /**
+     * Name of the queue
+     */
+    @NotNull
+    private String queueName;
 
     /**
      * Number of threads dispatching messages to consumers of this group
@@ -30,15 +38,35 @@ public class ConsumerGroupConfiguration {
     private String query;
 
 
+    public String getQueueName() {
+        return queueName;
+    }
+
+    public void setQueueName(String queueName) {
+        this.queueName = queueName;
+    }
+
     public int getThreadPoolSize() {
         return threadPoolSize;
+    }
+
+    public void setThreadPoolSize(int threadPoolSize) {
+        this.threadPoolSize = threadPoolSize;
     }
 
     public int getSelectBatchSize() {
         return selectBatchSize;
     }
 
+    public void setSelectBatchSize(int selectBatchSize) {
+        this.selectBatchSize = selectBatchSize;
+    }
+
     public String getQuery() {
         return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
     }
 }
