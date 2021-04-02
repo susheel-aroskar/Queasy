@@ -2,28 +2,26 @@ package org.queasy.db;
 
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.core.result.ResultSetAccumulator;
 import org.jdbi.v3.core.statement.PreparedBatch;
-import org.jdbi.v3.core.statement.StatementContext;
+import org.queasy.core.util.Snowflake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Types;
 
 /**
  * @author saroskar
  * Created on: 2021-04-01
  */
-public class QDbWriter implements ResultSetAccumulator<Long> {
+public class QDbWriter {
 
+    private final Snowflake idGenerator;
     private final Jdbi jdbi;
     private final String insertSQL;
-    private final String autoGenIdColumnName;
     private final int insertBatchSize;
 
     private volatile long lastWrittenMessageId;
+    private long currentId;
 
     private Handle handle;
     private PreparedBatch batch;
@@ -33,10 +31,10 @@ public class QDbWriter implements ResultSetAccumulator<Long> {
     private static final Logger logger = LoggerFactory.getLogger(QDbWriter.class);
 
 
-    public QDbWriter(final Jdbi jdbi, final String qTable, final String autoGenIdColumnName, final int insertBatchSize) {
+    public QDbWriter(final Snowflake idGenerator, final Jdbi jdbi, final String qTable, final int insertBatchSize) {
+        this.idGenerator = idGenerator;
         this.jdbi = jdbi;
-        this.insertSQL = String.format("INSERT INTO %s (qname, type, ts, mesg) VALUES (?, ?, ?, ?)", qTable);
-        this.autoGenIdColumnName = autoGenIdColumnName;
+        this.insertSQL = String.format("INSERT INTO %s (id, qname, type, ts, mesg) VALUES (?, ?, ?, ?, ?)", qTable);
         this.insertBatchSize = insertBatchSize;
     }
 
@@ -58,10 +56,12 @@ public class QDbWriter implements ResultSetAccumulator<Long> {
             startBatch();
         }
 
-        batch.bind(0, message[0])   //qname
-                .bindNull(1, Types.VARCHAR) //type
-                .bind(2, batchTS)
-                .bind(3, message[1])
+        currentId = idGenerator.nextId();
+        batch.bind(0, currentId) //id
+                .bind(1, message[0])   //qname
+                .bindNull(2, Types.VARCHAR) //type
+                .bind(3, batchTS) //timestamp
+                .bind(4, message[1]) //message
                 .add();
 
         batchCount++;
@@ -74,11 +74,9 @@ public class QDbWriter implements ResultSetAccumulator<Long> {
     private void finishBatch() {
         try {
             if (batchCount > 0) {
-                final long newId = batch
-                        .executeAndReturnGeneratedKeys("rowid")
-                        .reduceResultSet(0L, this);
+                batch.execute();
                 handle.commit();
-                lastWrittenMessageId = newId;
+                lastWrittenMessageId = currentId;
                 batch.close();
             }
         } catch (Exception ex) {
@@ -104,12 +102,6 @@ public class QDbWriter implements ResultSetAccumulator<Long> {
     public void finish() {
         finishBatch();
         closeHandle();
-    }
-
-    @Override
-    public Long apply(final Long previous, final ResultSet rs, final StatementContext ctx) throws SQLException {
-        final Long id = rs.getLong(autoGenIdColumnName);
-        return id.compareTo(previous) > 0 ? id : previous;
     }
 
 }

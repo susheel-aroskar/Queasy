@@ -14,6 +14,14 @@ import java.util.Map;
 public class ServerConfiguration extends Configuration {
 
     /**
+     * id of this message queue server. Every message queue server in the queue cluster must have an unique id.
+     * It's used in Snowflake unique id generation algorithm.
+     */
+    @NotNull
+    @Min(0)
+    @Max(1023)
+    private Integer hostId;
+    /**
      * Maximum number of producer or writer connections allowed
      */
     @NotNull
@@ -67,6 +75,13 @@ public class ServerConfiguration extends Configuration {
     private Map<String, ConsumerGroupConfiguration> consumerGroups;
 
 
+    public int getHostId() {
+        return hostId;
+    }
+
+    public void setHostId(int hostId) {
+        this.hostId = hostId;
+    }
 
     public int getMaxConnections() {
         return maxConnections;

@@ -4,6 +4,7 @@ database:
   properties:
     charSet: UTF-8
 
+hostId: 0
 maxConnections: 1024
 
 queue:

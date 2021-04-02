@@ -3,6 +3,7 @@ logging:
   loggers:
     org.queasy: DEBUG
 
+hostId: 0
 maxConnections: 1024
 consumerGroupsThreadPoolSize: 4
 newMessagePollInterval: 200ms
