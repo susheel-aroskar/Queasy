@@ -260,7 +260,7 @@ public class ProducerWebSocketTests {
         conn.onWebSocketConnect(session);
 
         conn.onWebSocketText("test");
-        Mockito.verify(remote).sendString("#OK");
+        Mockito.verify(remote).sendString(":OK", conn);
     }
 
     @Test
@@ -277,9 +277,9 @@ public class ProducerWebSocketTests {
         conn.onWebSocketConnect(session);
 
         conn.onWebSocketText("test1");
-        Mockito.verify(remote).sendString("#OK");
+        Mockito.verify(remote).sendString(":OK", conn);
         conn.onWebSocketText("test2");
-        Mockito.verify(remote).sendString("#TIMEOUT");
+        Mockito.verify(remote).sendString(":TIMEOUT", conn);
     }
 
     @Test
@@ -296,12 +296,12 @@ public class ProducerWebSocketTests {
         conn.onWebSocketConnect(session);
 
         conn.onWebSocketText("test1");
-        Mockito.verify(remote).sendString("#OK");
+        Mockito.verify(remote).sendString(":OK", conn);
 
         final Thread t = new Thread(() -> {
             try {
                 conn.onWebSocketText("test2");
-                Mockito.verify(remote).sendString("#TIMEOUT");
+                Mockito.verify(remote).sendString(":TIMEOUT", conn);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -310,15 +310,15 @@ public class ProducerWebSocketTests {
         Thread.sleep(100);
 
         conn.onWebSocketText("test3");
-        Mockito.verify(remote).sendString("#BUSY");
+        Mockito.verify(remote).sendString(":BUSY", conn);
 
         t.join();
         qw.drainQueue();
         conn.onWebSocketText("test4");
-        Mockito.verify(remote, Mockito.times(2)).sendString("#OK");
+        Mockito.verify(remote, Mockito.times(2)).sendString(":OK", conn);
 
         conn.onWebSocketText("test5");
-        Mockito.verify(remote, Mockito.times(2)).sendString("#TIMEOUT");
+        Mockito.verify(remote, Mockito.times(2)).sendString(":TIMEOUT", conn);
     }
 
 }

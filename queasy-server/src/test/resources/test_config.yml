@@ -15,5 +15,5 @@ queue:
 
 consumerGroups:
   testCG:
-    queueName: testQ
+    query: qname = 'testQ'
     selectBatchSize: 2
