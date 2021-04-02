@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ServerApplication extends Application<ServerConfiguration> {
 
+
     public static void main(final String[] args) throws Exception {
         new ServerApplication().run(args);
     }
@@ -33,17 +34,6 @@ public class ServerApplication extends Application<ServerConfiguration> {
     @Override
     public String getName() {
         return "QueasyServer";
-    }
-
-    private WebSocketPolicy configureWebSocketPolicy(final WebSocketConfiguration wsConfig, final WebSocketPolicy policy) {
-        policy.setAsyncWriteTimeout(wsConfig.getAsyncWriteTimeout());
-        policy.setIdleTimeout(wsConfig.getIdleTimeout());
-        policy.setInputBufferSize(wsConfig.getInputBufferSize());
-        policy.setMaxTextMessageBufferSize(wsConfig.getMaxTextMessageBufferSize());
-        policy.setMaxTextMessageSize(wsConfig.getMaxTextMessageSize());
-        policy.setMaxBinaryMessageBufferSize(wsConfig.getMaxBinaryMessageBufferSize());
-        policy.setMaxBinaryMessageSize(wsConfig.getMaxBinaryMessageSize());
-        return policy;
     }
 
     @Override
@@ -60,25 +50,25 @@ public class ServerApplication extends Application<ServerConfiguration> {
         final QueueWriter queueWriter = new QueueWriter(qConfig, jdbi);
         env.lifecycle().manage(queueWriter);
 
+        //Thread pool to handle consumer groups
+        final ScheduledExecutorService cgPool = env.lifecycle()
+                .scheduledExecutorService("cg-dispatcher-")
+                .threads(config.getConsumerGroupsThreadPoolSize())
+                .shutdownTime(config.getShutdownGracePeriod())
+                .build();
+
+        final long pollInterval = config.getNewMessagePollInterval().toMilliseconds();
+        final WebSocketConfiguration wsConfig = config.getWebSocketConfiguration();
+        final Map<String, ConsumerGroupConfiguration> consumerConfigs = config.getConsumerGroups();
         final ServletContextHandler servletCtxHandler = env.getApplicationContext();
 
         NativeWebSocketServletContainerInitializer.configure(servletCtxHandler, ((servletContext, nativeWebSocketConfiguration) -> {
-            // Setup queueWriter websocket handler
-            final WebSocketConfiguration wsConfig = config.getWebSocketConfiguration();
-            configureWebSocketPolicy(wsConfig, nativeWebSocketConfiguration.getPolicy());
+            // Set up queueWriter websocket handler
+            wsConfig.configureWebSocketPolicy(nativeWebSocketConfiguration.getPolicy());
             nativeWebSocketConfiguration.addMapping("/nq/*", new ProducerWebSocketCreator(wsConfig.getOrigin(),
                     config.getMaxConnections(), queueWriter));
 
-            //Thread pool to handle consumer groups
-            final ScheduledExecutorService cgPool = env.lifecycle()
-                    .scheduledExecutorService("cg-dispatcher-")
-                    .threads(config.getConsumerGroupsThreadPoolSize())
-                    .shutdownTime(config.getShutdownGracePeriod())
-                    .build();
-
             // Set up consumer groups WebSocket handlers
-            final long pollInterval = config.getNewMessagePollInterval().toMilliseconds();
-            final Map<String, ConsumerGroupConfiguration> consumerConfigs = config.getConsumerGroups();
             for (Map.Entry<String, ConsumerGroupConfiguration> consumerCfg : consumerConfigs.entrySet()) {
                 final ConsumerGroup consumerGroup = new ConsumerGroup(consumerCfg.getKey(), consumerCfg.getValue(),
                         qConfig, jdbi, queueWriter);

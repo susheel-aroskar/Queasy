@@ -8,7 +8,12 @@ maxConnections: 1024
 
 queue:
   tableName: queasy_q
+  ringBufferSize: 1024
+  insertBatchSize: 2
   maxSize: 10000
 
+
 consumerGroups:
-  default:
+  testCG:
+    queueName: testQ
+    selectBatchSize: 2

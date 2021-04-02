@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author saroskar
  * Created on: 2021-03-22
  */
-public final class ConsumerConnection extends BaseWebSocketConnection {
+public class ConsumerConnection extends BaseWebSocketConnection {
 
     private final ConsumerGroup consumerGroup;
     private final AtomicBoolean awaitingMessage;

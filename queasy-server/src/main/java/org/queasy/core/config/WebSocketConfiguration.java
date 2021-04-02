@@ -1,6 +1,7 @@
 package org.queasy.core.config;
 
 import com.google.common.annotations.VisibleForTesting;
+import org.eclipse.jetty.websocket.api.WebSocketPolicy;
 
 /**
  * @author saroskar
@@ -61,4 +62,15 @@ public class WebSocketConfiguration {
     public String getOrigin() {
         return origin;
     }
+
+    public void configureWebSocketPolicy(final WebSocketPolicy policy) {
+        policy.setAsyncWriteTimeout(asyncWriteTimeout);
+        policy.setIdleTimeout(idleTimeout);
+        policy.setInputBufferSize(inputBufferSize);
+        policy.setMaxTextMessageBufferSize(maxTextMessageBufferSize);
+        policy.setMaxTextMessageSize(maxTextMessageSize);
+        policy.setMaxBinaryMessageBufferSize(maxBinaryMessageBufferSize);
+        policy.setMaxBinaryMessageSize(maxBinaryMessageSize);
+    }
+
 }

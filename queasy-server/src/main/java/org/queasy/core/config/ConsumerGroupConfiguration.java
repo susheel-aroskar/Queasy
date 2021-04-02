@@ -28,7 +28,6 @@ public class ConsumerGroupConfiguration {
      * How many messages to select in a single batch or poll
      */
     @NotNull
-    @Min(32)
     private int selectBatchSize = 128;
 
     /**
