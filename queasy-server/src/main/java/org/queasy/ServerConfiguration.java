@@ -3,6 +3,7 @@ package org.queasy;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.util.Duration;
+import org.queasy.core.config.CacheConfiguration;
 import org.queasy.core.config.ConsumerGroupConfiguration;
 import org.queasy.core.config.QueueConfiguration;
 import org.queasy.core.config.WebSocketConfiguration;
@@ -74,6 +75,14 @@ public class ServerConfiguration extends Configuration {
     @NotNull
     private Map<String, ConsumerGroupConfiguration> consumerGroups;
 
+    /**
+     * System-wide message cache configuration
+     * @return
+     */
+    @Valid
+    @NotNull
+    private CacheConfiguration cacheConfiguration;
+
 
     public int getHostId() {
         return hostId;
@@ -136,4 +145,11 @@ public class ServerConfiguration extends Configuration {
         this.consumerGroups = consumerGroups;
     }
 
+    public CacheConfiguration getCacheConfiguration() {
+        return cacheConfiguration;
+    }
+
+    public void setCacheConfiguration(CacheConfiguration cacheConfiguration) {
+        this.cacheConfiguration = cacheConfiguration;
+    }
 }

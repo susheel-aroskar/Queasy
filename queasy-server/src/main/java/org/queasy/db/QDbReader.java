@@ -1,5 +1,6 @@
 package org.queasy.db;
 
+import com.github.benmanes.caffeine.cache.Cache;
 import org.jdbi.v3.core.Jdbi;
 import org.queasy.core.config.ConsumerGroupConfiguration;
 import org.queasy.core.config.QueueConfiguration;
@@ -20,6 +21,7 @@ public class QDbReader {
     private final String ckptName;
     private final int fetchSize;
     private final String selectSQL;
+    private final Cache<Long, String> messageCache;
 
     private volatile long lastReadMessageId;
     private volatile long lastCkptMessageId;
@@ -36,13 +38,14 @@ public class QDbReader {
 
 
     public QDbReader(final QDbWriter qDbWriter, final Jdbi jdbi, final QueueConfiguration qConfig,
-                     final String cgName, final ConsumerGroupConfiguration cgConfig) {
+                     final String cgName, final ConsumerGroupConfiguration cgConfig, final Cache<Long, String> cache) {
         this.qDbWriter = qDbWriter;
         this.jdbi = jdbi;
         this.ckptName = cgName;
         this.fetchSize = cgConfig.getSelectBatchSize();
         this.selectSQL = String.format("SELECT id, mesg FROM %s WHERE id > ? AND %s AND type is NULL",
                 qConfig.getTableName(), cgConfig.getQuery());
+        this.messageCache = cache;
     }
 
     public long getLastReadMessageId() {
@@ -106,11 +109,14 @@ public class QDbReader {
                         .setMaxRows(fetchSize)
                         .map((rs, ctx) -> {
                             lastReadMessageId = rs.getLong(1);
-                            return lastReadMessageId + "\n" + rs.getString(2);
+                            final String message = rs.getString(2);
+                            return (messageCache != null) ?
+                                    messageCache.get(lastReadMessageId, id -> id + "\n" + message) :
+                                    lastReadMessageId + "\n" + message;
                         })
                         .forEach(s -> {
                             if (!messages.add(s)) {
-                                // Can never happen as long as ConsumerGroup sets messages size = fetchSize + 1
+                                // Can never really happen as long as ConsumerGroup sets messages size = fetchSize + 1
                                 logger.error("ERROR! Could not add message read from DB to messages to deliver: " + selectSQL);
                             }
                         })
@@ -120,9 +126,9 @@ public class QDbReader {
             // New messages found
             return true;
         } else {
-            // This can happen if writer has inserted new messages but none of them match the "query" for this consumer
-            // group. In such cases we do want to advance lastReadMessageId - and the checkpoint -to lastWrittenMessageId
-            // because we want to poll messages from that point next time onwards
+            // This can happen if writer inserts new messages but none of them match the "query" for this consumer
+            // group. In such cases we do want to advance lastReadMessageId - and the checkpoint - to
+            // lastWrittenMessageId because we want to poll messages from that point next time onwards
             lastReadMessageId = lastWrittenMessageId;
             saveCheckpoint();
             return false;

@@ -7,6 +7,9 @@ database:
 hostId: 0
 maxConnections: 1024
 
+cacheConfiguration:
+  enabled: true
+
 queue:
   tableName: queasy_q
   ringBufferSize: 1024

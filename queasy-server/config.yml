@@ -9,6 +9,9 @@ consumerGroupsThreadPoolSize: 4
 newMessagePollInterval: 200ms
 shutdownGracePeriod: 30s
 
+cacheConfiguration:
+  enabled: true
+
 database:
   driverClass: org.sqlite.JDBC
   url: 'jdbc:sqlite:/tmp/queue.db'

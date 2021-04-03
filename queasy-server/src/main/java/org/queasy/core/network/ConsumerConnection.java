@@ -28,6 +28,7 @@ public class ConsumerConnection extends BaseWebSocketConnection {
     public void onWebSocketText(final String message) {
         if (GET_COMMAND.equals(message) && awaitingMessage.compareAndSet(false, true)) {
             try {
+
                 consumerGroup.waitForMessage(this);
             }
             catch (Exception ex) {
@@ -38,9 +39,10 @@ public class ConsumerConnection extends BaseWebSocketConnection {
         }
     }
 
-    public void sendMessage(final String message) {
+    public String sendMessage(final String message) {
         awaitingMessage.set(false);
         writeMessage(message);
+        return message; //for unit testing
     }
 
 }

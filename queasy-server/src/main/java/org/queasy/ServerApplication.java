@@ -1,5 +1,7 @@
 package org.queasy;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi3.JdbiFactory;
 import io.dropwizard.setup.Bootstrap;
@@ -11,6 +13,7 @@ import org.eclipse.jetty.websocket.server.NativeWebSocketServletContainerInitial
 import org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter;
 import org.jdbi.v3.core.Jdbi;
 import org.queasy.core.bundles.QueasyMigrationBundle;
+import org.queasy.core.config.CacheConfiguration;
 import org.queasy.core.config.ConsumerGroupConfiguration;
 import org.queasy.core.config.QueueConfiguration;
 import org.queasy.core.config.WebSocketConfiguration;
@@ -58,6 +61,8 @@ public class ServerApplication extends Application<ServerConfiguration> {
         final QueueWriter queueWriter = new QueueWriter(qConfig, qDbWriter);
         env.lifecycle().manage(queueWriter);
 
+        final Cache<Long, String> messageCache = buildMessagesCache(config.getCacheConfiguration());
+
         //Thread pool to handle consumer groups
         final ScheduledExecutorService cgPool = env.lifecycle()
                 .scheduledExecutorService("cg-dispatcher-")
@@ -80,7 +85,7 @@ public class ServerApplication extends Application<ServerConfiguration> {
             for (Map.Entry<String, ConsumerGroupConfiguration> consumerCfg : consumerConfigs.entrySet()) {
                 final String consumerGroupName  = consumerCfg.getKey();
                 final ConsumerGroupConfiguration cgConfig = consumerCfg.getValue();
-                final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, qConfig, consumerGroupName, cgConfig);
+                final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, qConfig, consumerGroupName, cgConfig, messageCache);
                 final ConsumerGroup consumerGroup = new ConsumerGroup(qDbReader);
                 nativeWebSocketConfiguration.addMapping("/dq/" + consumerGroupName,
                         new ConsumerGroupWebSocketCreator(wsConfig.getOrigin(), config.getMaxConnections(), consumerGroup));
@@ -90,6 +95,15 @@ public class ServerApplication extends Application<ServerConfiguration> {
         }));
 
         WebSocketUpgradeFilter.configure(servletCtxHandler);
+    }
+
+    private Cache<Long, String> buildMessagesCache(final CacheConfiguration cacheConfig) {
+        return (cacheConfig.isEnabled()) ?
+                Caffeine.newBuilder()
+                        .initialCapacity(cacheConfig.getInitialCapacity())
+                        .maximumSize(cacheConfig.getMaxSize())
+                        .expireAfterWrite(cacheConfig.getExpireAfter().toMilliseconds(), TimeUnit.MILLISECONDS)
+                        .build() : null;
     }
 
 }

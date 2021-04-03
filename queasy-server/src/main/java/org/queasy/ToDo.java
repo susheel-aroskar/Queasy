@@ -6,15 +6,22 @@ package org.queasy;
  */
 public class ToDo {
 
-    //-  Use Caffeine cache to share message instances across ConsumerGroups
-    //-  send message to consumer as <id>\n<message>
     //-  Timeout with #GET
-    //-  #NACK from consumer to push message back on the queue?
     //-  Integration test(s)
     //-  QueueTrimmerTask using lifecycle scheduler builder
     //-  Health check
+
     //-  Replication - add partition as non unique key column?
+    //      - On detecting dead master insert it's rows in elected replicator's DB with replicators snowflakeIds
+    //      - Add column original_id to queue table and populate it with original message ids of dead master
+    //      - change message format to <mesg_id>:<original_mesg_id | "">\n<message body>
+    //      - return messages from failed over, dead master starting from last persisted ckpt of the dead master
+    //      - exchanged heart-beats and checkpoint regularly between connected masters
+
     //-  Metrics using DW
 
     //-  Subscriber topic
+
+    //-  #NACK from consumer to push message back on the queue?
+
 }
