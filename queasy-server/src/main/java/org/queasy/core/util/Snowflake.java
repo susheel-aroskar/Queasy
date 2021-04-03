@@ -1,18 +1,19 @@
 package org.queasy.core.util;
 
-import java.security.SecureRandom;
+import javax.inject.Singleton;
 import java.time.Instant;
 
 /**
  * Distributed Sequence Generator.
  * Inspired by Twitter snowflake: https://github.com/twitter/snowflake/tree/snowflake-2010
- *
+ * <p>
  * This class should be used as a Singleton.
  * Make sure that you create and reuse a Single instance of Snowflake per node in your distributed system cluster.
  */
+@Singleton
 public class Snowflake {
 
-    private final long nodeId;
+    private final long hostId;
 
     private volatile long lastTimestamp = -1L;
     private volatile long sequence = 0L;
@@ -25,16 +26,15 @@ public class Snowflake {
     private static final long MAX_SEQUENCE = (1L << SEQUENCE_BITS) - 1;
     private static final long MASK_NODE_ID = ((1L << NODE_ID_BITS) - 1) << SEQUENCE_BITS;
     private static final long MASK_SEQUENCE = (1L << SEQUENCE_BITS) - 1;
-    // Custom Epoch (April 1, 2021 Midnight UTC = 2015-01-01T00:00:00Z)
+    // Custom Epoch (April 1, 2021 Midnight UTC)
     private static final long DEFAULT_CUSTOM_EPOCH = Instant.parse("2021-04-01T00:00:00Z").toEpochMilli();
 
 
-    // Create Snowflake with a nodeId and custom epoch
-    public Snowflake(long nodeId) {
-        if(nodeId < 0 || nodeId > MAX_NODE_ID) {
+    public Snowflake(long hostId) {
+        if (hostId < 0 || hostId > MAX_NODE_ID) {
             throw new IllegalArgumentException(String.format("NodeId must be between %d and %d", 0, MAX_NODE_ID));
         }
-        this.nodeId = nodeId;
+        this.hostId = hostId;
     }
 
     public synchronized long nextId() {
@@ -48,7 +48,7 @@ public class Snowflake {
 
         if (currentTimestamp == lastTimestamp) {
             sequence = (sequence + 1) & MAX_SEQUENCE;
-            if(sequence == 0) {
+            if (sequence == 0) {
                 // Sequence Exhausted, wait till next millisecond.
                 while (currentTimestamp == lastTimestamp) {
                     Thread.yield();
@@ -63,7 +63,7 @@ public class Snowflake {
         lastTimestamp = currentTimestamp;
 
         long id = currentTimestamp << (NODE_ID_BITS + SEQUENCE_BITS)
-                | (nodeId << SEQUENCE_BITS)
+                | (hostId << SEQUENCE_BITS)
                 | sequence;
 
         return id;

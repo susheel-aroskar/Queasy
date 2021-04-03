@@ -59,7 +59,7 @@ public class QueueWriterTest {
         qConfig.setTableName("queasy_q");
         qConfig.setRingBufferSize(16);
 
-        qDbWriter = new QDbWriter(idGenerator, jdbi, qConfig.getTableName(),qConfig.getInsertBatchSize());
+        qDbWriter = new QDbWriter(idGenerator, jdbi, qConfig);
         qw = new QueueWriter(qConfig, qDbWriter);
     }
 

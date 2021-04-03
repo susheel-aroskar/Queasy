@@ -3,6 +3,7 @@ package org.queasy.db;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.PreparedBatch;
+import org.queasy.core.config.QueueConfiguration;
 import org.queasy.core.util.Snowflake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,11 +32,12 @@ public class QDbWriter {
     private static final Logger logger = LoggerFactory.getLogger(QDbWriter.class);
 
 
-    public QDbWriter(final Snowflake idGenerator, final Jdbi jdbi, final String qTable, final int insertBatchSize) {
+    public QDbWriter(final Snowflake idGenerator, final Jdbi jdbi, final QueueConfiguration qConfig) {
         this.idGenerator = idGenerator;
         this.jdbi = jdbi;
-        this.insertSQL = String.format("INSERT INTO %s (id, qname, type, ts, mesg) VALUES (?, ?, ?, ?, ?)", qTable);
-        this.insertBatchSize = insertBatchSize;
+        this.insertSQL = String.format("INSERT INTO %s (id, qname, type, ts, mesg) VALUES (?, ?, ?, ?, ?)",
+                qConfig.getTableName());
+        this.insertBatchSize = qConfig.getInsertBatchSize();
     }
 
     public long getLastWrittenMessageId() {

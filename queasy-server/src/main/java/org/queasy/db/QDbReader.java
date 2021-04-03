@@ -1,7 +1,8 @@
 package org.queasy.db;
 
-import com.google.common.annotations.VisibleForTesting;
 import org.jdbi.v3.core.Jdbi;
+import org.queasy.core.config.ConsumerGroupConfiguration;
+import org.queasy.core.config.QueueConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ public class QDbReader {
 
     private volatile long lastReadMessageId;
     private volatile long lastCkptMessageId;
-    private volatile long numOfDbFetches;
+    private volatile long readBatchId;
 
 
     private static final String SELECT_CHECKPOINT_SQL = "SELECT checkpoint FROM queasy_checkpoint WHERE cg_name = ?";
@@ -34,14 +35,34 @@ public class QDbReader {
     private static final Logger logger = LoggerFactory.getLogger(QDbReader.class);
 
 
-    public QDbReader(final QDbWriter qDbWriter, final Jdbi jdbi, final String ckptName,
-                     final String qTable, final int fetchSize, final String query) {
+    public QDbReader(final QDbWriter qDbWriter, final Jdbi jdbi, final QueueConfiguration qConfig,
+                     final String cgName, final ConsumerGroupConfiguration cgConfig) {
         this.qDbWriter = qDbWriter;
         this.jdbi = jdbi;
-        this.ckptName = ckptName;
-        this.fetchSize = fetchSize;
-        this.selectSQL = String.format("SELECT id, mesg FROM %s WHERE id > ? AND %s AND type is NULL", qTable, query);
+        this.ckptName = cgName;
+        this.fetchSize = cgConfig.getSelectBatchSize();
+        this.selectSQL = String.format("SELECT id, mesg FROM %s WHERE id > ? AND %s AND type is NULL",
+                qConfig.getTableName(), cgConfig.getQuery());
     }
+
+    public long getLastReadMessageId() {
+        return lastReadMessageId;
+    }
+
+    /**
+     * Tracks DB fetches, that is, groups of messages read as a batch. Is monotonically increasing so that it can be
+     * used to sense missed message batches in case of a slow pub-sub or topic consumer
+     *
+     * @return
+     */
+    public long getReadBatchId() {
+        return readBatchId;
+    }
+
+    public int getFetchSize() {
+        return fetchSize;
+    }
+
 
     public long readLastCheckpoint() {
         final Optional<Long> result = jdbi.withHandle(handle -> handle.select(SELECT_CHECKPOINT_SQL, ckptName)
@@ -68,10 +89,6 @@ public class QDbReader {
         }
     }
 
-    public int getFetchSize() {
-        return fetchSize;
-    }
-
     public boolean loadNextBatchOfMessages(final Collection<String> messages) {
         // Persist checkpoint only after all messages in the batch are dispatched to clients
         saveCheckpoint();
@@ -80,7 +97,7 @@ public class QDbReader {
             return false; // Writer hasn't advanced
         }
 
-        numOfDbFetches++;
+        readBatchId++;
         final long lastWrittenMessageId = qDbWriter.getLastWrittenMessageId();
         final long oldLastReadMessageId = lastReadMessageId;
         jdbi.useHandle(handle ->
@@ -89,7 +106,7 @@ public class QDbReader {
                         .setMaxRows(fetchSize)
                         .map((rs, ctx) -> {
                             lastReadMessageId = rs.getLong(1);
-                            return rs.getString(2);
+                            return lastReadMessageId + "\n" + rs.getString(2);
                         })
                         .forEach(s -> {
                             if (!messages.add(s)) {
@@ -104,21 +121,12 @@ public class QDbReader {
             return true;
         } else {
             // This can happen if writer has inserted new messages but none of them match the "query" for this consumer
-            // group. In such cases we want to advance lastReadMessageId - and the checkpoint -to lastWrittenMessageId
-            // because we want poll messages from that point next time onwards
+            // group. In such cases we do want to advance lastReadMessageId - and the checkpoint -to lastWrittenMessageId
+            // because we want to poll messages from that point next time onwards
             lastReadMessageId = lastWrittenMessageId;
+            saveCheckpoint();
             return false;
         }
     }
 
-
-    @VisibleForTesting
-    public long getLastReadMessageId() {
-        return lastReadMessageId;
-    }
-
-    @VisibleForTesting
-    public long getNumOfDbFetches() {
-        return numOfDbFetches;
-    }
 }

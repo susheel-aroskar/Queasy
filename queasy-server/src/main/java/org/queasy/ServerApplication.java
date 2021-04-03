@@ -53,7 +53,7 @@ public class ServerApplication extends Application<ServerConfiguration> {
 
         final Snowflake idGenerator = new Snowflake(config.getHostId());
 
-        final QDbWriter qDbWriter = new QDbWriter(idGenerator, jdbi, qConfig.getTableName(), qConfig.getInsertBatchSize());
+        final QDbWriter qDbWriter = new QDbWriter(idGenerator, jdbi, qConfig);
 
         final QueueWriter queueWriter = new QueueWriter(qConfig, qDbWriter);
         env.lifecycle().manage(queueWriter);
@@ -80,8 +80,7 @@ public class ServerApplication extends Application<ServerConfiguration> {
             for (Map.Entry<String, ConsumerGroupConfiguration> consumerCfg : consumerConfigs.entrySet()) {
                 final String consumerGroupName  = consumerCfg.getKey();
                 final ConsumerGroupConfiguration cgConfig = consumerCfg.getValue();
-                final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, consumerGroupName, qConfig.getTableName(),
-                        cgConfig.getSelectBatchSize(), cgConfig.getQuery());
+                final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, qConfig, consumerGroupName, cgConfig);
                 final ConsumerGroup consumerGroup = new ConsumerGroup(qDbReader);
                 nativeWebSocketConfiguration.addMapping("/dq/" + consumerGroupName,
                         new ConsumerGroupWebSocketCreator(wsConfig.getOrigin(), config.getMaxConnections(), consumerGroup));

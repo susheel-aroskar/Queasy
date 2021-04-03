@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.queasy.ServerConfiguration;
 import org.queasy.core.NoRunTestApplication;
@@ -62,13 +63,13 @@ public class ConsumerGroupTests {
     public void setUp() {
         jdbi = Jdbi.create("jdbc:sqlite:unit-test.db");
         qConfig = app.getConfiguration().getQueue();
-        qDbWriter = new QDbWriter(idGenerator, jdbi, qConfig.getTableName(), qConfig.getInsertBatchSize());
+        qDbWriter = new QDbWriter(idGenerator, jdbi, qConfig);
         queueWriter = new QueueWriter(qConfig, qDbWriter);
         final Map<String, ConsumerGroupConfiguration> cgConfigs = app.getConfiguration().getConsumerGroups();
         cgConfig = cgConfigs.get(CG_NAME);
         jdbi.useHandle(handle -> handle.execute("delete from queasy_q"));
         jdbi.useHandle(handle -> handle.execute("delete from queasy_checkpoint"));
-        qDbReader = new QDbReader(qDbWriter, jdbi, CG_NAME, qConfig.getTableName(), cgConfig.getSelectBatchSize(), cgConfig.getQuery());
+        qDbReader = new QDbReader(qDbWriter, jdbi, qConfig, CG_NAME, cgConfig);
         cg = new ConsumerGroup(qDbReader);
     }
 
@@ -79,8 +80,13 @@ public class ConsumerGroupTests {
                         .first());
     }
 
+
+    private String[] makeMessage(String queue, String mesg) {
+        return new String[]{queue, mesg};
+    }
+
     private String[] makeMessage(String mesg) {
-        return new String[]{"testQ", mesg};
+        return makeMessage("testQ", mesg);
     }
 
     private ConsumerConnection makeConsumerConn(ConsumerGroup cg) {
@@ -94,7 +100,7 @@ public class ConsumerGroupTests {
     public void testDefaultCheckpointOnInit() {
         cg.start();
         assertEquals(0L, qDbReader.getLastReadMessageId());
-        assertEquals(0L, qDbReader.getNumOfDbFetches());
+        assertEquals(0L, qDbReader.getReadBatchId());
     }
 
     @Test
@@ -103,7 +109,7 @@ public class ConsumerGroupTests {
                 CG_NAME, 29, System.currentTimeMillis()));
         cg.start();
         assertEquals(29L, qDbReader.getLastReadMessageId());
-        assertEquals(0L, qDbReader.getNumOfDbFetches());
+        assertEquals(0L, qDbReader.getReadBatchId());
     }
 
     @Test
@@ -115,7 +121,7 @@ public class ConsumerGroupTests {
         cg.start();
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
         assertEquals(Collections.emptyList(), cg.getMessages());
-        assertEquals(0L, qDbReader.getNumOfDbFetches());
+        assertEquals(0L, qDbReader.getReadBatchId());
         queueWriter.stop();
     }
 
@@ -129,7 +135,7 @@ public class ConsumerGroupTests {
         assertEquals(0L, qDbReader.getLastReadMessageId());
         assertEquals(ImmutableList.of(conn), cg.getClients());
         assertEquals(Collections.emptyList(), cg.getMessages());
-        assertEquals(0L, qDbReader.getNumOfDbFetches());
+        assertEquals(0L, qDbReader.getReadBatchId());
         queueWriter.stop();
     }
 
@@ -138,17 +144,20 @@ public class ConsumerGroupTests {
         cg.start();
         assertEquals(0L, qDbReader.getLastReadMessageId());
         queueWriter.publish(makeMessage("test_1"));
-        queueWriter.publish(makeMessage("test_2"));
         queueWriter.start();
         Thread.sleep(100);
+        final long id1 = qDbWriter.getLastWrittenMessageId();
+        queueWriter.publish(makeMessage("test_2"));
+        Thread.sleep(100);
+        final long id2 = qDbWriter.getLastWrittenMessageId();
         ConsumerConnection conn = makeConsumerConn(cg);
         conn.onWebSocketText("#GET");
         cg.run();
-        Mockito.verify(conn).sendMessage("test_1");
+        Mockito.verify(conn).sendMessage(id1+"\ntest_1");
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
         assertEquals(Collections.emptyList(), cg.getClients());
-        assertEquals(ImmutableList.of("test_2"), cg.getMessages());
-        assertEquals(1L, qDbReader.getNumOfDbFetches());
+        assertEquals(ImmutableList.of(id2+"\ntest_2"), cg.getMessages());
+        assertEquals(1L, qDbReader.getReadBatchId());
         queueWriter.stop();
     }
 
@@ -163,16 +172,16 @@ public class ConsumerGroupTests {
         ConsumerConnection conn1 = makeConsumerConn(cg);
         conn1.onWebSocketText("#GET");
         cg.run();
-        Mockito.verify(conn1).sendMessage("test_1");
+        Mockito.verify(conn1).sendMessage(Mockito.endsWith("\ntest_1"));
 
         ConsumerConnection conn2 = makeConsumerConn(cg);
         conn2.onWebSocketText("#GET");
-        Mockito.verify(conn2).sendMessage("test_2");
+        Mockito.verify(conn2).sendMessage(qDbWriter.getLastWrittenMessageId()+"\ntest_2");
 
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
         assertEquals(Collections.emptyList(), cg.getClients());
         assertEquals(Collections.emptyList(), cg.getMessages());
-        assertEquals(1L, qDbReader.getNumOfDbFetches());
+        assertEquals(1L, qDbReader.getReadBatchId());
         queueWriter.stop();
     }
 
@@ -188,16 +197,16 @@ public class ConsumerGroupTests {
         ConsumerConnection conn = makeConsumerConn(cg);
         conn.onWebSocketText("#GET");
         cg.run();
-        assertEquals(1L, qDbReader.getNumOfDbFetches());
-        Mockito.verify(conn).sendMessage("test_1");
+        assertEquals(1L, qDbReader.getReadBatchId());
+        Mockito.verify(conn).sendMessage(Mockito.endsWith("\ntest_1"));
         conn.onWebSocketText("#GET");
-        Mockito.verify(conn).sendMessage("test_2");
+        Mockito.verify(conn).sendMessage(Mockito.endsWith("\ntest_2"));
         conn.onWebSocketText("#GET");
         final long secondMesgId = qDbReader.getLastReadMessageId();
         cg.run(); // selectBatchSize: 2 in config. Need to fetch again from the DB
         assertEquals(secondMesgId, readCheckPointFromDb());
-        assertEquals(2L, qDbReader.getNumOfDbFetches());
-        Mockito.verify(conn).sendMessage("test_3");
+        assertEquals(2L, qDbReader.getReadBatchId());
+        Mockito.verify(conn).sendMessage(qDbWriter.getLastWrittenMessageId()+"\ntest_3");
 
         conn.onWebSocketText("#GET");
         cg.run();
@@ -205,7 +214,7 @@ public class ConsumerGroupTests {
         assertEquals(Collections.emptyList(), cg.getMessages());
         assertEquals(qDbWriter.getLastWrittenMessageId(), readCheckPointFromDb());
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
-        assertEquals(2L, qDbReader.getNumOfDbFetches());
+        assertEquals(2L, qDbReader.getReadBatchId());
 
         queueWriter.stop();
     }
@@ -222,7 +231,7 @@ public class ConsumerGroupTests {
         cg.run();
         assertEquals(Collections.emptyList(), cg.getMessages());
         assertEquals(0L, readCheckPointFromDb());
-        assertEquals(0L, qDbReader.getNumOfDbFetches());
+        assertEquals(0L, qDbReader.getReadBatchId());
         queueWriter.stop();
     }
 
@@ -238,8 +247,8 @@ public class ConsumerGroupTests {
         final ConsumerConnection conn = makeConsumerConn(cg);
         conn.onWebSocketText("#GET");
         cg.run();
-        assertEquals(1L, qDbReader.getNumOfDbFetches());
-        assertEquals(ImmutableList.of("test_2"), cg.getMessages());
+        assertEquals(1L, qDbReader.getReadBatchId());
+        assertEquals(ImmutableList.of(qDbWriter.getLastWrittenMessageId()+"\ntest_2"), cg.getMessages());
 
         conn.onWebSocketText("#GET");
         conn.onWebSocketText("#GET");
@@ -248,7 +257,7 @@ public class ConsumerGroupTests {
         assertEquals(ImmutableList.of(conn), cg.getClients());
         assertEquals(Collections.emptyList(), cg.getMessages());
         assertEquals(qDbWriter.getLastWrittenMessageId(), readCheckPointFromDb());
-        assertEquals(1L, qDbReader.getNumOfDbFetches());
+        assertEquals(1L, qDbReader.getReadBatchId());
         queueWriter.stop();
     }
 
@@ -258,17 +267,22 @@ public class ConsumerGroupTests {
         final ConsumerConnection conn = makeConsumerConn(cg);
         conn.onWebSocketText("#GET");
         cg.run();
-        assertEquals(0L, qDbReader.getNumOfDbFetches());
+        assertEquals(0L, qDbReader.getReadBatchId());
         assertEquals(0L, qDbReader.getLastReadMessageId());
 
         queueWriter.publish(makeMessage("test_1"));
-        queueWriter.publish(makeMessage("test_2"));
         queueWriter.start();
         Thread.sleep(100);
+        final long id1 = qDbWriter.getLastWrittenMessageId();
+        queueWriter.publish(makeMessage("test_2"));
+        Thread.sleep(100);
+        final long id2 = qDbWriter.getLastWrittenMessageId();
+
 
         cg.run();
-        assertEquals(ImmutableList.of("test_2"), cg.getMessages());
-        assertEquals(1L, qDbReader.getNumOfDbFetches());
+        Mockito.verify(conn).sendMessage(id1+"\ntest_1");
+        assertEquals(ImmutableList.of(id2+"\ntest_2"), cg.getMessages());
+        assertEquals(1L, qDbReader.getReadBatchId());
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
 
         conn.onWebSocketText("#GET");
@@ -276,8 +290,45 @@ public class ConsumerGroupTests {
         cg.run();
         assertEquals(ImmutableList.of(conn), cg.getClients());
         assertEquals(Collections.emptyList(), cg.getMessages());
-        assertEquals(1L, qDbReader.getNumOfDbFetches());
+        assertEquals(1L, qDbReader.getReadBatchId());
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
+        queueWriter.stop();
+    }
+
+    @Test
+    public void testCheckpointAdvancesEvenWithNoMatchingMessagePublish() throws Exception{
+        cg.start();
+        final ConsumerConnection conn = makeConsumerConn(cg);
+        conn.onWebSocketText("#GET");
+        cg.run();
+        assertEquals(0L, qDbReader.getReadBatchId());
+        assertEquals(0L, qDbReader.getLastReadMessageId());
+
+        queueWriter.publish(makeMessage("test_1"));
+        queueWriter.publish(makeMessage("test_2"));
+        queueWriter.start();
+        Thread.sleep(100);
+        long id = qDbWriter.getLastWrittenMessageId();
+
+        cg.run();
+        assertEquals(ImmutableList.of(id+"\ntest_2"), cg.getMessages());
+        assertEquals(1L, qDbReader.getReadBatchId());
+        assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
+
+        conn.onWebSocketText("#GET");
+        Mockito.verify(conn).sendMessage(id+"\ntest_2");
+        conn.onWebSocketText("#GET");
+
+        //publish messages to wrong queue
+        queueWriter.publish(makeMessage("someQ", "test_3"));
+        Thread.sleep(100);
+
+        cg.run();
+        assertEquals(ImmutableList.of(conn), cg.getClients());
+        assertEquals(Collections.emptyList(), cg.getMessages());
+        assertEquals(2L, qDbReader.getReadBatchId());
+        assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
+        assertEquals(qDbWriter.getLastWrittenMessageId(), readCheckPointFromDb());
         queueWriter.stop();
     }
 
