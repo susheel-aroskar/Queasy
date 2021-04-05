@@ -70,7 +70,7 @@ public class ServerApplication extends Application<ServerConfiguration> {
 
         final long pollInterval = config.getNewMessagePollInterval().toMilliseconds();
         final WebSocketConfiguration wsConfig = config.getWebSocketConfiguration();
-        final Map<String, ConsumerGroupConfiguration> consumerConfigs = config.getConsumerGroups();
+        final Map<String, ConsumerGroupConfiguration> cgConfigs = config.getConsumerGroups();
         final ServletContextHandler servletCtxHandler = env.getApplicationContext();
 
         NativeWebSocketServletContainerInitializer.configure(servletCtxHandler, ((servletContext, nativeWebSocketConfiguration) -> {
@@ -80,12 +80,12 @@ public class ServerApplication extends Application<ServerConfiguration> {
                     config.getMaxConnections(), queueWriter));
 
             // Set up consumer groups WebSocket handlers
-            for (Map.Entry<String, ConsumerGroupConfiguration> consumerCfg : consumerConfigs.entrySet()) {
-                final String consumerGroupName  = consumerCfg.getKey();
-                final ConsumerGroupConfiguration cgConfig = consumerCfg.getValue();
-                final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, writerConfig, consumerGroupName, cgConfig, messageCache);
+            for (Map.Entry<String, ConsumerGroupConfiguration> cg : cgConfigs.entrySet()) {
+                final String cgName  = cg.getKey();
+                final ConsumerGroupConfiguration cgConfig = cg.getValue();
+                final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, writerConfig, cgName, cgConfig, messageCache);
                 final ConsumerGroup consumerGroup = new ConsumerGroup(qDbReader);
-                nativeWebSocketConfiguration.addMapping("/dq/" + consumerGroupName,
+                nativeWebSocketConfiguration.addMapping("/dq/" + cgName,
                         new ConsumerGroupWebSocketCreator(wsConfig.getOrigin(), config.getMaxConnections(), consumerGroup));
                 env.lifecycle().manage(consumerGroup);
                 cgPool.scheduleAtFixedRate(consumerGroup, pollInterval, pollInterval, TimeUnit.MILLISECONDS);
