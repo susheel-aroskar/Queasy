@@ -11,8 +11,14 @@ public enum Status {
     TIMEOUT,
     ERROR;
 
+    private final String status;
+
+    Status() {
+        status = ":" + name();
+    }
+
     @Override
     public String toString() {
-        return ":"+name();
+        return status;
     }
 }

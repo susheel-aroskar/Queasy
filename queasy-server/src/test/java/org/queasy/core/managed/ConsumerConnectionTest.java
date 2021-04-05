@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.queasy.core.network.ConsumerConnection;
+import org.queasy.db.QDbReader;
 
 import java.util.Collections;
 
@@ -90,4 +91,29 @@ public class ConsumerConnectionTest {
         Mockito.verify(conn).sendMessage("test_2");
         assertEquals(Collections.emptyList(), cg.getClients());
     }
+
+    @Test
+    public void testTimeout() throws Exception {
+        QDbReader qDbReader = Mockito.mock(QDbReader.class);
+        Mockito.when(qDbReader.getFetchSize()).thenReturn(2);
+        Mockito.when(qDbReader.getTimeout()).thenReturn(100L);
+        final ConsumerGroup testCG = new ConsumerGroup(qDbReader);
+        final ConsumerConnection conn1 = Mockito.spy(new ConsumerConnection(testCG));
+        final ConsumerConnection conn2 = Mockito.spy(new ConsumerConnection(testCG));
+        final ConsumerConnection conn3 = Mockito.spy(new ConsumerConnection(testCG));
+        Mockito.doReturn(Mockito.mock(RemoteEndpoint.class)).when(conn1).getRemote();
+        Mockito.doReturn(Mockito.mock(RemoteEndpoint.class)).when(conn2).getRemote();
+        Mockito.doReturn(Mockito.mock(RemoteEndpoint.class)).when(conn3).getRemote();
+        conn1.onWebSocketText("#GET");
+        conn2.onWebSocketText("#GET");
+        Thread.sleep(110);
+
+        testCG.run();
+        Mockito.verify(conn1).sendMessage(":TIMEOUT");
+        Mockito.verify(conn2).sendMessage(":TIMEOUT");
+        conn3.onWebSocketText("#GET");
+        testCG.run();
+        Mockito.verify(conn3, Mockito.times(0)).sendMessage(Mockito.anyString());
+    }
+
 }

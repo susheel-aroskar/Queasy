@@ -7,6 +7,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.queasy.core.config.ConsumerGroupConfiguration;
 import org.queasy.core.config.QueueConfiguration;
 import org.queasy.core.network.ConsumerConnection;
+import org.queasy.core.network.Status;
 import org.queasy.db.QDbReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,6 +72,11 @@ public class ConsumerGroup implements Managed, Runnable {
                 if (message != null) {
                     client.sendMessage(message); // send the message to the client
                     continue; //next
+                }
+
+                if (client.isTimedOut(qDbReader.getTimeout())) {
+                    client.sendMessage(Status.TIMEOUT.toString());
+                    continue;
                 }
 
                 // we have run out of fetched messages, add the client back to wait queue

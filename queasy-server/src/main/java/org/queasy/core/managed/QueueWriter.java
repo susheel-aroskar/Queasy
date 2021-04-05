@@ -64,7 +64,7 @@ public final class QueueWriter implements Managed, Runnable {
                 }
             }
             catch (Exception ex) {
-                logger.error("Error in Queue writer: ", ex);
+                logger.error("Exception in Queue writer: ", ex);
             }
             finally {
                 qDbWriter.finish();

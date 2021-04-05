@@ -6,7 +6,6 @@ package org.queasy;
  */
 public class ToDo {
 
-    //-  Timeout with #GET
     //-  Integration test(s)
     //-  QueueTrimmerTask using lifecycle scheduler builder
     //-  Health check

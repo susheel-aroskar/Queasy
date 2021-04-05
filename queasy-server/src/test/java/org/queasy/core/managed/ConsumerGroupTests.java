@@ -167,10 +167,10 @@ public class ConsumerGroupTests {
         ConsumerConnection conn = makeConsumerConn(cg);
         conn.onWebSocketText("#GET");
         cg.run();
-        Mockito.verify(conn).sendMessage(id1 + "\ntest_1");
+        Mockito.verify(conn).sendMessage(QDbReader.buildMessage(id1 ,"test_1"));
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
         assertEquals(Collections.emptyList(), cg.getClients());
-        assertEquals(ImmutableList.of(id2 + "\ntest_2"), cg.getMessages());
+        assertEquals(ImmutableList.of(QDbReader.buildMessage(id2 ,"test_2")), cg.getMessages());
         assertEquals(1L, qDbReader.getReadBatchId());
         queueWriter.stop();
     }
@@ -186,11 +186,11 @@ public class ConsumerGroupTests {
         ConsumerConnection conn1 = makeConsumerConn(cg);
         conn1.onWebSocketText("#GET");
         cg.run();
-        Mockito.verify(conn1).sendMessage(Mockito.endsWith("\ntest_1"));
+        Mockito.verify(conn1).sendMessage(Mockito.endsWith("test_1}"));
 
         ConsumerConnection conn2 = makeConsumerConn(cg);
         conn2.onWebSocketText("#GET");
-        Mockito.verify(conn2).sendMessage(qDbWriter.getLastWrittenMessageId() + "\ntest_2");
+        Mockito.verify(conn2).sendMessage(QDbReader.buildMessage(qDbWriter.getLastWrittenMessageId(), "test_2"));
 
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
         assertEquals(Collections.emptyList(), cg.getClients());
@@ -309,15 +309,15 @@ public class ConsumerGroupTests {
         conn.onWebSocketText("#GET");
         cg.run();
         assertEquals(1L, qDbReader.getReadBatchId());
-        Mockito.verify(conn).sendMessage(Mockito.endsWith("\ntest_1"));
+        Mockito.verify(conn).sendMessage(Mockito.endsWith("test_1}"));
         conn.onWebSocketText("#GET");
-        Mockito.verify(conn).sendMessage(Mockito.endsWith("\ntest_2"));
+        Mockito.verify(conn).sendMessage(Mockito.endsWith("test_2}"));
         conn.onWebSocketText("#GET");
         final long secondMesgId = qDbReader.getLastReadMessageId();
         cg.run(); // selectBatchSize: 2 in config. Need to fetch again from the DB
         assertEquals(secondMesgId, readCheckPointFromDb());
         assertEquals(2L, qDbReader.getReadBatchId());
-        Mockito.verify(conn).sendMessage(qDbWriter.getLastWrittenMessageId() + "\ntest_3");
+        Mockito.verify(conn).sendMessage(QDbReader.buildMessage(qDbWriter.getLastWrittenMessageId(), "test_3"));
 
         conn.onWebSocketText("#GET");
         cg.run();
@@ -359,7 +359,8 @@ public class ConsumerGroupTests {
         conn.onWebSocketText("#GET");
         cg.run();
         assertEquals(1L, qDbReader.getReadBatchId());
-        assertEquals(ImmutableList.of(qDbWriter.getLastWrittenMessageId() + "\ntest_2"), cg.getMessages());
+        assertEquals(ImmutableList.of(QDbReader.buildMessage(qDbWriter.getLastWrittenMessageId(), "test_2"))
+                , cg.getMessages());
 
         conn.onWebSocketText("#GET");
         conn.onWebSocketText("#GET");
@@ -391,8 +392,8 @@ public class ConsumerGroupTests {
 
 
         cg.run();
-        Mockito.verify(conn).sendMessage(id1 + "\ntest_1");
-        assertEquals(ImmutableList.of(id2 + "\ntest_2"), cg.getMessages());
+        Mockito.verify(conn).sendMessage(QDbReader.buildMessage(id1,"test_1"));
+        assertEquals(ImmutableList.of(QDbReader.buildMessage(id2,"test_2")), cg.getMessages());
         assertEquals(1L, qDbReader.getReadBatchId());
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
 
@@ -422,12 +423,12 @@ public class ConsumerGroupTests {
         long id = qDbWriter.getLastWrittenMessageId();
 
         cg.run();
-        assertEquals(ImmutableList.of(id + "\ntest_2"), cg.getMessages());
+        assertEquals(ImmutableList.of(QDbReader.buildMessage(id ,"test_2")), cg.getMessages());
         assertEquals(1L, qDbReader.getReadBatchId());
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
 
         conn.onWebSocketText("#GET");
-        Mockito.verify(conn).sendMessage(id + "\ntest_2");
+        Mockito.verify(conn).sendMessage(QDbReader.buildMessage(id, "test_2"));
         conn.onWebSocketText("#GET");
 
         //publish messages to wrong queue

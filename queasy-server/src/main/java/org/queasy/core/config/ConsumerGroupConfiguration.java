@@ -24,6 +24,11 @@ public class ConsumerGroupConfiguration {
     @NotNull
     private int selectBatchSize = 128;
 
+    /**
+     * Queue client timeout. If no message is received in the time window client receives a :TIMEOUT status
+     */
+    @NotNull
+    private Duration timeOut = Duration.minutes(30);
 
     public String getQuery() {
         return query;
@@ -40,4 +45,13 @@ public class ConsumerGroupConfiguration {
     public void setSelectBatchSize(int selectBatchSize) {
         this.selectBatchSize = selectBatchSize;
     }
+
+    public Duration getTimeOut() {
+        return timeOut;
+    }
+
+    public void setTimeOut(Duration timeOut) {
+        this.timeOut = timeOut;
+    }
+
 }

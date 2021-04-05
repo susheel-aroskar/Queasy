@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.queasy.core.network.Command.GET;
+
 /**
  * @author saroskar
  * Created on: 2021-03-22
@@ -14,8 +16,8 @@ public class ConsumerConnection extends BaseWebSocketConnection {
 
     private final ConsumerGroup consumerGroup;
     private final AtomicBoolean awaitingMessage;
+    private long startTS;
 
-    public static final String GET_COMMAND = Command.GET.toString();
     private static final Logger logger = LoggerFactory.getLogger(ProducerConnection.class);
 
 
@@ -26,12 +28,11 @@ public class ConsumerConnection extends BaseWebSocketConnection {
 
     @Override
     public void onWebSocketText(final String message) {
-        if (GET_COMMAND.equals(message) && awaitingMessage.compareAndSet(false, true)) {
+        if (GET.matches(message) && awaitingMessage.compareAndSet(false, true)) {
             try {
-
+                startTS = System.currentTimeMillis();
                 consumerGroup.waitForMessage(this);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 awaitingMessage.set(false);
                 sendStatus(Status.ERROR);
                 logger.warn("Error while waiting for a message");
@@ -43,6 +44,10 @@ public class ConsumerConnection extends BaseWebSocketConnection {
         awaitingMessage.set(false);
         writeMessage(message);
         return message; //for unit testing
+    }
+
+    public boolean isTimedOut(final long timeout) {
+        return (System.currentTimeMillis() - startTS) > timeout;
     }
 
 }

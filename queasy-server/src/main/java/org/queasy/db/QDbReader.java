@@ -20,6 +20,7 @@ public class QDbReader {
     private final Jdbi jdbi;
     private final String ckptName;
     private final int fetchSize;
+    private final long timeout;
     private final String selectSQL;
     private final Cache<Long, String> messageCache;
 
@@ -43,9 +44,14 @@ public class QDbReader {
         this.jdbi = jdbi;
         this.ckptName = cgName;
         this.fetchSize = cgConfig.getSelectBatchSize();
+        this.timeout = cgConfig.getTimeOut().toMilliseconds();
         this.selectSQL = String.format("SELECT id, mesg FROM %s WHERE id > ? AND %s AND type is NULL",
                 qConfig.getTableName(), cgConfig.getQuery());
         this.messageCache = cache;
+    }
+
+    public long getTimeout() {
+        return timeout;
     }
 
     public long getLastReadMessageId() {
@@ -111,8 +117,8 @@ public class QDbReader {
                             lastReadMessageId = rs.getLong(1);
                             final String message = rs.getString(2);
                             return (messageCache != null) ?
-                                    messageCache.get(lastReadMessageId, id -> id + "\n" + message) :
-                                    lastReadMessageId + "\n" + message;
+                                    messageCache.get(lastReadMessageId, id -> buildMessage(id, message)) :
+                                    buildMessage(lastReadMessageId ,message);
                         })
                         .forEach(s -> {
                             if (!messages.add(s)) {
@@ -133,6 +139,10 @@ public class QDbReader {
             saveCheckpoint();
             return false;
         }
+    }
+
+    public static String buildMessage(final long id, final String message) {
+        return String.format("{\"id\": %s, \"message\": %s}", id, message);
     }
 
 }
