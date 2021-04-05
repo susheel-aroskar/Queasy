@@ -19,7 +19,7 @@ import org.queasy.ServerConfiguration;
 import org.queasy.core.NoRunTestApplication;
 import org.queasy.core.config.CacheConfiguration;
 import org.queasy.core.config.ConsumerGroupConfiguration;
-import org.queasy.core.config.QueueConfiguration;
+import org.queasy.core.config.WriterConfiguration;
 import org.queasy.core.network.ConsumerConnection;
 import org.queasy.core.util.Snowflake;
 import org.queasy.db.QDbReader;
@@ -42,12 +42,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ConsumerGroupTests {
 
     private Jdbi jdbi;
-    private QueueConfiguration qConfig;
+    private WriterConfiguration writerConfig;
     private ConsumerGroupConfiguration cgConfig;
     private QDbWriter qDbWriter;
     private QDbReader qDbReader;
     private QueueWriter queueWriter;
-    private Cache<Long, String> messgeCache;
+    private Cache<Long, String> messageCache;
     private ConsumerGroup cg;
 
     private static Snowflake idGenerator;
@@ -69,21 +69,21 @@ public class ConsumerGroupTests {
     @BeforeEach
     public void setUp() {
         jdbi = Jdbi.create("jdbc:sqlite:unit-test.db");
-        qConfig = app.getConfiguration().getQueue();
-        qDbWriter = new QDbWriter(idGenerator, jdbi, qConfig);
-        queueWriter = new QueueWriter(qConfig, qDbWriter);
-        final Map<String, ConsumerGroupConfiguration> cgConfigs = app.getConfiguration().getConsumerGroups();
-        cgConfig = cgConfigs.get(CG_NAME);
+        writerConfig = app.getConfiguration().getWriterConfiguration();
+        qDbWriter = new QDbWriter(idGenerator, jdbi, writerConfig);
+        queueWriter = new QueueWriter(writerConfig, qDbWriter);
+        final Map<String, ConsumerGroupConfiguration> qConfigs = app.getConfiguration().getConsumerGroups();
+        cgConfig = qConfigs.get(CG_NAME);
         jdbi.useHandle(handle -> handle.execute("delete from queasy_q"));
         jdbi.useHandle(handle -> handle.execute("delete from queasy_checkpoint"));
         final CacheConfiguration cc = app.getConfiguration().getCacheConfiguration();
-        messgeCache = Caffeine.newBuilder()
+        messageCache = Caffeine.newBuilder()
                 .initialCapacity(cc.getInitialCapacity())
                 .maximumSize(cc.getMaxSize())
                 .expireAfterWrite(cc.getExpireAfter().toMilliseconds(), TimeUnit.MILLISECONDS)
                 .build();
 
-        qDbReader = new QDbReader(qDbWriter, jdbi, qConfig, CG_NAME, cgConfig, messgeCache);
+        qDbReader = new QDbReader(qDbWriter, jdbi, writerConfig, CG_NAME, cgConfig, messageCache);
         cg = new ConsumerGroup(qDbReader);
     }
 
@@ -202,7 +202,7 @@ public class ConsumerGroupTests {
     @Test
     public void testClientsShareMessageInstancesWithCache() throws Exception {
         final ArgumentCaptor<String> messageCaptor = ArgumentCaptor.forClass(String.class);
-        final QDbReader qDbReader2 = new QDbReader(qDbWriter, jdbi, qConfig, CG_NAME, cgConfig, messgeCache);
+        final QDbReader qDbReader2 = new QDbReader(qDbWriter, jdbi, writerConfig, CG_NAME, cgConfig, messageCache);
         final ConsumerGroup cg2 = new ConsumerGroup(qDbReader2);
 
 
@@ -249,7 +249,7 @@ public class ConsumerGroupTests {
 
     @Test
     public void testClientsDoNotShareMessageInstancesWithoutCache() throws Exception {
-        final QDbReader qDbReader2 = new QDbReader(qDbWriter, jdbi, qConfig, CG_NAME, cgConfig, null);
+        final QDbReader qDbReader2 = new QDbReader(qDbWriter, jdbi, writerConfig, CG_NAME, cgConfig, null);
         final ConsumerGroup cg2 = new ConsumerGroup(qDbReader2);
 
         final ArgumentCaptor<String> messageCaptor = ArgumentCaptor.forClass(String.class);
@@ -451,7 +451,7 @@ public class ConsumerGroupTests {
 
     @Test
     public void testCheckpointAdvancesWithNoMatchingMessagePublishWithoutCache() throws Exception {
-        qDbReader = new QDbReader(qDbWriter, jdbi, qConfig, CG_NAME, cgConfig, null);
+        qDbReader = new QDbReader(qDbWriter, jdbi, writerConfig, CG_NAME, cgConfig, null);
         cg = new ConsumerGroup(qDbReader);
         testCheckpointAdvancesWithNoMatchingMessagePublish();
     }

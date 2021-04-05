@@ -2,10 +2,6 @@ package org.queasy.core.managed;
 
 import com.google.common.annotations.VisibleForTesting;
 import io.dropwizard.lifecycle.Managed;
-import io.dropwizard.util.Strings;
-import org.jdbi.v3.core.Jdbi;
-import org.queasy.core.config.ConsumerGroupConfiguration;
-import org.queasy.core.config.QueueConfiguration;
 import org.queasy.core.network.ConsumerConnection;
 import org.queasy.core.network.Status;
 import org.queasy.db.QDbReader;
@@ -14,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;

@@ -3,7 +3,7 @@ package org.queasy.db;
 import com.github.benmanes.caffeine.cache.Cache;
 import org.jdbi.v3.core.Jdbi;
 import org.queasy.core.config.ConsumerGroupConfiguration;
-import org.queasy.core.config.QueueConfiguration;
+import org.queasy.core.config.WriterConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +38,7 @@ public class QDbReader {
     private static final Logger logger = LoggerFactory.getLogger(QDbReader.class);
 
 
-    public QDbReader(final QDbWriter qDbWriter, final Jdbi jdbi, final QueueConfiguration qConfig,
+    public QDbReader(final QDbWriter qDbWriter, final Jdbi jdbi, final WriterConfiguration writerConfig,
                      final String cgName, final ConsumerGroupConfiguration cgConfig, final Cache<Long, String> cache) {
         this.qDbWriter = qDbWriter;
         this.jdbi = jdbi;
@@ -46,7 +46,7 @@ public class QDbReader {
         this.fetchSize = cgConfig.getSelectBatchSize();
         this.timeout = cgConfig.getTimeOut().toMilliseconds();
         this.selectSQL = String.format("SELECT id, mesg FROM %s WHERE id > ? AND %s AND type is NULL",
-                qConfig.getTableName(), cgConfig.getQuery());
+                writerConfig.getTableName(), cgConfig.getQuery());
         this.messageCache = cache;
     }
 

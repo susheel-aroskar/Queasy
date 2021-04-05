@@ -2,8 +2,7 @@ package org.queasy.core.managed;
 
 import com.google.common.annotations.VisibleForTesting;
 import io.dropwizard.lifecycle.Managed;
-import org.jdbi.v3.core.Jdbi;
-import org.queasy.core.config.QueueConfiguration;
+import org.queasy.core.config.WriterConfiguration;
 import org.queasy.db.QDbWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,15 +26,15 @@ public final class QueueWriter implements Managed, Runnable {
     private static final Logger logger = LoggerFactory.getLogger(QueueWriter.class);
 
 
-    public QueueWriter(final QueueConfiguration qConfig, final QDbWriter qDbWriter) {
+    public QueueWriter(final WriterConfiguration writerConfig, final QDbWriter qDbWriter) {
         this.qDbWriter = qDbWriter;
-        queue = new ArrayBlockingQueue<>(qConfig.getRingBufferSize());
-        writeTimeout = qConfig.getWriteTimeout().toMilliseconds();
+        queue = new ArrayBlockingQueue<>(writerConfig.getRingBufferSize());
+        writeTimeout = writerConfig.getWriteTimeout().toMilliseconds();
     }
 
-    public QDbWriter getQDbWriter() {
-        return qDbWriter;
-    }
+//    public QDbWriter getQDbWriter() {
+//        return qDbWriter;
+//    }
 
     @Override
     public void start() {

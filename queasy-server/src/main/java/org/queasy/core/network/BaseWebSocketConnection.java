@@ -19,10 +19,10 @@ public abstract class BaseWebSocketConnection extends WebSocketAdapter implement
     private final static AtomicInteger connectionCount = new AtomicInteger(0);
     private static final Logger logger = LoggerFactory.getLogger(BaseWebSocketConnection.class);
 
-    private final AtomicBoolean countIncremented;
+    private final AtomicBoolean isCounted;
 
     protected BaseWebSocketConnection() {
-        countIncremented = new AtomicBoolean();
+        isCounted = new AtomicBoolean();
     }
 
     public static int getConnectionCount() {
@@ -56,7 +56,7 @@ public abstract class BaseWebSocketConnection extends WebSocketAdapter implement
 
     @Override
     public final void onWebSocketConnect(Session sess) {
-        if (countIncremented.compareAndSet(false, true)) {
+        if (isCounted.compareAndSet(false, true)) {
             final int count = connectionCount.incrementAndGet();
             logger.debug("WEBSOCKET CONNECT #{}", count);
         }
@@ -65,7 +65,7 @@ public abstract class BaseWebSocketConnection extends WebSocketAdapter implement
 
     @Override
     public final void onWebSocketClose(int statusCode, String reason) {
-        if (countIncremented.compareAndSet(true, false)) {
+        if (isCounted.compareAndSet(true, false)) {
             final int count = connectionCount.decrementAndGet();
             logger.debug("WEBSOCKET CLOSE #{}", count);
         }
@@ -74,7 +74,7 @@ public abstract class BaseWebSocketConnection extends WebSocketAdapter implement
 
     @Override
     public final void onWebSocketError(Throwable cause) {
-        if (countIncremented.compareAndSet(true, false)) {
+        if (isCounted.compareAndSet(true, false)) {
             final int count = connectionCount.decrementAndGet();
             logger.debug("WEBSOCKET ERROR #{}", count);
         }

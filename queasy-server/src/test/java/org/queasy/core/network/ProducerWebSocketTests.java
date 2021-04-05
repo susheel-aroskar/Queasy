@@ -9,7 +9,7 @@ import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.queasy.core.config.QueueConfiguration;
+import org.queasy.core.config.WriterConfiguration;
 import org.queasy.core.managed.QueueWriter;
 
 import java.io.IOException;
@@ -253,9 +253,9 @@ public class ProducerWebSocketTests {
         final RemoteEndpoint remote = Mockito.mock(RemoteEndpoint.class);
         Mockito.doReturn(remote).when(session).getRemote();
 
-        final QueueConfiguration qc = new QueueConfiguration();
-        qc.setRingBufferSize(2);
-        final QueueWriter qw = new QueueWriter(qc,null);
+        final WriterConfiguration wc = new WriterConfiguration();
+        wc.setRingBufferSize(2);
+        final QueueWriter qw = new QueueWriter(wc,null);
         final ProducerConnection conn = new ProducerConnection(qw, "test");
         conn.onWebSocketConnect(session);
 
@@ -269,10 +269,10 @@ public class ProducerWebSocketTests {
         final RemoteEndpoint remote = Mockito.mock(RemoteEndpoint.class);
         Mockito.doReturn(remote).when(session).getRemote();
 
-        final QueueConfiguration qc = new QueueConfiguration();
-        qc.setRingBufferSize(1);
-        qc.setWriteTimeout(Duration.milliseconds(10));
-        final QueueWriter qw = new QueueWriter(qc,null);
+        final WriterConfiguration wc = new WriterConfiguration();
+        wc.setRingBufferSize(1);
+        wc.setWriteTimeout(Duration.milliseconds(10));
+        final QueueWriter qw = new QueueWriter(wc,null);
         final ProducerConnection conn = new ProducerConnection(qw, "test");
         conn.onWebSocketConnect(session);
 
@@ -288,10 +288,10 @@ public class ProducerWebSocketTests {
         final RemoteEndpoint remote = Mockito.mock(RemoteEndpoint.class);
         Mockito.doReturn(remote).when(session).getRemote();
 
-        final QueueConfiguration qc = new QueueConfiguration();
-        qc.setRingBufferSize(1);
-        qc.setWriteTimeout(Duration.seconds(1));
-        final QueueWriter qw = new QueueWriter(qc,null);
+        final WriterConfiguration wc = new WriterConfiguration();
+        wc.setRingBufferSize(1);
+        wc.setWriteTimeout(Duration.seconds(1));
+        final QueueWriter qw = new QueueWriter(wc,null);
         final ProducerConnection conn = new ProducerConnection(qw, "test");
         conn.onWebSocketConnect(session);
 

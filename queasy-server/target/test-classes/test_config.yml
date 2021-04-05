@@ -10,7 +10,7 @@ maxConnections: 1024
 cacheConfiguration:
   enabled: true
 
-queue:
+writerConfiguration:
   tableName: queasy_q
   ringBufferSize: 1024
   insertBatchSize: 2

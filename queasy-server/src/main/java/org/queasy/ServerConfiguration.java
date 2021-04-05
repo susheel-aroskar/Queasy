@@ -5,7 +5,7 @@ import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.util.Duration;
 import org.queasy.core.config.CacheConfiguration;
 import org.queasy.core.config.ConsumerGroupConfiguration;
-import org.queasy.core.config.QueueConfiguration;
+import org.queasy.core.config.WriterConfiguration;
 import org.queasy.core.config.WebSocketConfiguration;
 
 import javax.validation.Valid;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class ServerConfiguration extends Configuration {
 
     /**
-     * id of this message queue server. Every message queue server in the queue cluster must have an unique id.
+     * id of this message writerConfiguration server. Every message writerConfiguration server in the writerConfiguration cluster must have an unique id.
      * It's used in Snowflake unique id generation algorithm.
      */
     @NotNull
@@ -62,11 +62,11 @@ public class ServerConfiguration extends Configuration {
     private WebSocketConfiguration webSocketConfiguration = new WebSocketConfiguration();
 
     /**
-     * QueueConfiguration properties
+     * WriterConfiguration properties
      */
     @Valid
     @NotNull
-    private QueueConfiguration queue;
+    private WriterConfiguration writerConfiguration;
 
     /**
      * Consumer groups config
@@ -132,8 +132,8 @@ public class ServerConfiguration extends Configuration {
         return webSocketConfiguration;
     }
 
-    public QueueConfiguration getQueue() {
-        return queue;
+    public WriterConfiguration getWriterConfiguration() {
+        return writerConfiguration;
     }
 
 

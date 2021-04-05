@@ -1,7 +1,6 @@
 package org.queasy.core.managed;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit5.DropwizardAppExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
@@ -13,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.queasy.ServerConfiguration;
 import org.queasy.core.NoRunTestApplication;
-import org.queasy.core.config.QueueConfiguration;
+import org.queasy.core.config.WriterConfiguration;
 import org.queasy.core.util.Snowflake;
 import org.queasy.db.QDbWriter;
 
@@ -54,13 +53,13 @@ public class QueueWriterTest {
         jdbi = Jdbi.create("jdbc:sqlite:unit-test.db");
         jdbi.withHandle(handle -> handle.createUpdate("delete from queasy_q").execute());
 
-        final QueueConfiguration qConfig = new QueueConfiguration();
-        qConfig.setInsertBatchSize(4);
-        qConfig.setTableName("queasy_q");
-        qConfig.setRingBufferSize(16);
+        final WriterConfiguration writerConfig = new WriterConfiguration();
+        writerConfig.setInsertBatchSize(4);
+        writerConfig.setTableName("queasy_q");
+        writerConfig.setRingBufferSize(16);
 
-        qDbWriter = new QDbWriter(idGenerator, jdbi, qConfig);
-        qw = new QueueWriter(qConfig, qDbWriter);
+        qDbWriter = new QDbWriter(idGenerator, jdbi, writerConfig);
+        qw = new QueueWriter(writerConfig, qDbWriter);
     }
 
     private List<String> makeMesgsList(List<Map<String, Object>> results) {

@@ -29,7 +29,7 @@ database:
     charSet: UTF-8
 
 
-queue:
+writerConfiguration:
   tableName: q_easy
   maxRetention: 90 days
   maxSize: 10000000

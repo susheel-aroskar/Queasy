@@ -2,18 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f185507-bf12-49cd-ace4-0332bdf80a15" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/JsonInsertTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/config/ConsumerGroupConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/config/ConsumerGroupConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/config/QueueConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/config/WriterConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/ConsumerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/ConsumerConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/BaseWebSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/BaseWebSocketConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerConnectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/QueueWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/QueueWriterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/test_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test_config.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,19 +34,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java">
+        <entry file="file://$PROJECT_DIR$/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-533">
-              <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+            <state relative-caret-position="82">
+              <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerConnectionTest.java">
+        <entry file="file://$PROJECT_DIR$/src/test/resources/test_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1247">
-              <caret line="16" column="25" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="35" />
+            <state relative-caret-position="202">
+              <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="428">
+              <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="290" column="36" selection-start-line="290" selection-start-column="36" selection-end-line="290" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,41 +72,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/WriterConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="143" column="10" selection-start-line="143" selection-start-column="10" selection-end-line="143" selection-end-column="10" />
+            <state relative-caret-position="140">
+              <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1962#1963#0" expanded="true" />
-                <element signature="e#1992#1993#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="362" column="16" selection-start-line="362" selection-start-column="16" selection-end-line="362" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="66" column="39" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2223#2224#0" expanded="true" />
-                <element signature="e#2252#2253#0" expanded="true" />
+                <element signature="e#2083#2084#0" expanded="true" />
+                <element signature="e#2127#2128#0" expanded="true" />
+                <element signature="e#2165#2166#0" expanded="true" />
+                <element signature="e#2206#2207#0" expanded="true" />
+                <element signature="e#2241#2242#0" expanded="true" />
+                <element signature="e#2299#2300#0" expanded="true" />
+                <element signature="e#2347#2348#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,17 +93,97 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="216">
+              <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/JsonInsertTest.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="36" column="54" lean-forward="true" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+            <state relative-caret-position="139">
+              <caret line="75" column="66" selection-start-line="75" selection-start-column="66" selection-end-line="75" selection-end-column="66" />
+              <folding>
+                <element signature="e#3626#3627#0" expanded="true" />
+                <element signature="e#3663#3664#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="82">
+              <caret line="45" column="47" selection-start-line="45" selection-start-column="47" selection-end-line="45" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3823#3824#0" expanded="true" />
+                <element signature="e#3871#3872#0" expanded="true" />
+                <element signature="e#3920#3921#0" expanded="true" />
+                <element signature="e#3969#3970#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="41" column="67" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/ConsumerGroupConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/queue_schema.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-435">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="653">
+              <caret line="37" lean-forward="true" selection-start-line="34" selection-end-line="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/QueueWriterTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="942">
+              <caret line="69" column="16" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -143,6 +224,10 @@
       <find>size</find>
       <find>take</find>
       <find>build</find>
+      <find>qConfig</find>
+      <find>cg</find>
+      <find>qCfg</find>
+      <find>qc</find>
     </findStrings>
     <replaceStrings>
       <replace>${dropwizard.version}</replace>
@@ -154,7 +239,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/mesg/Message.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/mesg/TextMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/mesg/BinaryMessage.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/mesg/BinaryMessageTest.java" />
@@ -172,8 +256,6 @@
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketCreatorTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/ConsumerGroupConnection.java" />
         <option value="$PROJECT_DIR$/src/main/resources/queue_schema.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/QueueConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/BaseWebSocketConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/ProducerConnection.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/MockConsumerGroup.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/network/ConsumerConnectionTest.java" />
@@ -181,30 +263,33 @@
         <option value="$PROJECT_DIR$/src/test/resources/test_queue_schema.yml" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/WebSocketConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/db/QueueDB.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/util/SnowFlake.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/util/SnowflakeTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/util/SnowflakePerfTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/util/Snowflake.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbWriter.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/QueueWriterTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/CacheConfiguration.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/test/resources/test_config.yml" />
-        <option value="$PROJECT_DIR$/config.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/ConsumerGroupConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/Status.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/Command.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/ConsumerConnection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerConnectionTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/JsonInsertTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/BaseWebSocketConnection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/QueueWriterTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbWriter.java" />
+        <option value="$PROJECT_DIR$/config.yml" />
+        <option value="$PROJECT_DIR$/src/test/resources/test_config.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/QueueConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/ConsumerGroupConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/WriterConfiguration.java" />
       </list>
     </option>
   </component>
@@ -214,10 +299,9 @@
     </order>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-100" />
-    <option name="y" value="-1057" />
-    <option name="width" value="1920" />
-    <option name="height" value="1057" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -384,6 +468,24 @@
             <path>
               <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.eclipse.jetty.websocket:websocket-api:9.4.37.v20210219" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.eclipse.jetty.websocket:websocket-api:9.4.37.v20210219" type="70bed36:NamedLibraryElementNode" />
+              <item name="websocket-api-9.4.37.v20210219.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.eclipse.jetty.websocket:websocket-api:9.4.37.v20210219" type="70bed36:NamedLibraryElementNode" />
+              <item name="websocket-api-9.4.37.v20210219.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
@@ -563,22 +665,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ConsumerConnectionTest.testTimeout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="queasy-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.queasy.core.managed.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.queasy.core.managed" />
-      <option name="MAIN_CLASS_NAME" value="org.queasy.core.managed.ConsumerConnectionTest" />
-      <option name="METHOD_NAME" value="testTimeout" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ConsumerGroupTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="queasy-server" />
       <extension name="coverage">
@@ -611,6 +697,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="QueueWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="queasy-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.queasy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.queasy" />
+      <option name="TEST_OBJECT" value="uniqueId" />
+      <uniqueIds>
+        <uniqueId value="[engine:junit-jupiter]/[class:org.queasy.core.managed.QueueWriterTest]" />
+      </uniqueIds>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="org.queasy in queasy-server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="queasy-server" />
       <extension name="coverage">
@@ -630,18 +733,18 @@
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Dump DB" />
       <item itemvalue="JUnit.org.queasy in queasy-server" />
-      <item itemvalue="JUnit.ConsumerConnectionTest.testTimeout" />
       <item itemvalue="JUnit.ConsumerConnectionTest" />
       <item itemvalue="JUnit.JsonInsertTest" />
       <item itemvalue="JUnit.ConsumerGroupTests" />
+      <item itemvalue="JUnit.QueueWriterTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.org.queasy in queasy-server" />
+        <item itemvalue="JUnit.QueueWriterTest" />
         <item itemvalue="JUnit.ConsumerGroupTests" />
         <item itemvalue="JUnit.JsonInsertTest" />
         <item itemvalue="JUnit.ConsumerConnectionTest" />
-        <item itemvalue="JUnit.ConsumerConnectionTest.testTimeout" />
       </list>
     </recent_temporary>
   </component>
@@ -656,23 +759,11 @@
       <option name="presentableId" value="Default" />
       <updated>1616183043029</updated>
       <workItem from="1616183044454" duration="125927000" />
-      <workItem from="1616711643147" duration="92038000" />
+      <workItem from="1616711643147" duration="98797000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="org_queasy_in_queasy-server - 2021.04.04 at 18h 23m 40s.xml">
-      <configuration name="org.queasy in queasy-server" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ConsumerGroupTests - 2021.04.04 at 18h 24m 46s.xml">
-      <configuration name="ConsumerGroupTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ConsumerGroupTests - 2021.04.04 at 18h 28m 29s.xml">
-      <configuration name="ConsumerGroupTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ConsumerGroupTests - 2021.04.04 at 18h 29m 30s.xml">
-      <configuration name="ConsumerGroupTests" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ConsumerGroupTests - 2021.04.04 at 18h 29m 54s.xml">
       <configuration name="ConsumerGroupTests" configurationId="JUnit" />
     </history-entry>
@@ -691,12 +782,24 @@
     <history-entry file="org_queasy_in_queasy-server - 2021.04.04 at 18h 33m 52s.xml">
       <configuration name="org.queasy in queasy-server" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="org_queasy_in_queasy-server - 2021.04.04 at 18h 34m 49s.xml">
+      <configuration name="org.queasy in queasy-server" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="org_queasy_in_queasy-server - 2021.04.05 at 12h 09m 59s.xml">
+      <configuration name="org.queasy in queasy-server" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="org_queasy_in_queasy-server - 2021.04.05 at 12h 10m 34s.xml">
+      <configuration name="org.queasy in queasy-server" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="QueueWriterTest - 2021.04.05 at 12h 12m 48s.xml">
+      <configuration name="QueueWriterTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217965000" />
+    <option name="totallyTimeSpent" value="224724000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-100" y="-1057" width="1920" height="1057" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
@@ -704,19 +807,19 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Designer" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.25452608" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.34191704" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32908705" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5007153" side_tool="true" weight="0.40682414" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.32484075" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.4015748" />
       <window_info anchor="bottom" id="Java Enterprise" order="4" show_stripe_button="false" weight="0.32908705" />
       <window_info anchor="bottom" id="Database Changes" order="5" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="GraphQL" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="8" />
-      <window_info anchor="bottom" id="Find" order="9" weight="0.4044586" />
-      <window_info active="true" anchor="bottom" id="Run" order="10" sideWeight="0.49928468" visible="true" weight="0.5191083" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.40419948" />
+      <window_info anchor="bottom" id="Run" order="10" sideWeight="0.49928468" visible="true" weight="0.5183727" />
       <window_info anchor="bottom" id="Debug" order="11" weight="0.3970276" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
@@ -823,7 +926,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java</url>
-          <line>288</line>
+          <line>292</line>
           <properties />
           <option name="timeStamp" value="71" />
         </line-breakpoint>
@@ -835,13 +938,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/resources/test_queue_schema.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="43" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/jdbi/jdbi3-core/3.18.0/jdbi3-core-3.18.0.jar!/org/jdbi/v3/core/mapper/ColumnMapper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -966,27 +1062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/network/BaseWebSocketConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1197#1198#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="320" column="76" selection-start-line="320" selection-start-column="76" selection-end-line="320" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueTrimmer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1010,35 +1085,6 @@
           <caret line="12" column="28" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/queue_schema.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/QueueWriterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="61" column="60" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/db/QDbWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="34" column="99" selection-start-line="34" selection-start-column="99" selection-end-line="34" selection-end-column="99" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1417#1418#0" expanded="true" />
-            <element signature="e#1455#1456#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1076,41 +1122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2466">
-          <caret line="147" column="21" selection-start-line="147" selection-start-column="21" selection-end-line="147" selection-end-column="21" />
-          <folding>
-            <element signature="e#2016#2017#0" expanded="true" />
-            <element signature="e#2045#2046#0" expanded="true" />
-            <element signature="e#2086#2087#0" expanded="true" />
-            <element signature="e#2122#2123#0" expanded="true" />
-            <element signature="e#2160#2161#0" expanded="true" />
-            <element signature="e#2197#2198#0" expanded="true" />
-            <element signature="e#2254#2255#0" expanded="true" />
-            <element signature="e#2306#2307#0" expanded="true" />
-            <element signature="e#2358#2359#0" expanded="true" />
-            <element signature="e#2409#2410#0" expanded="true" />
-            <element signature="e#2625#2626#0" expanded="true" />
-            <element signature="e#2670#2671#0" expanded="true" />
-            <element signature="e#2864#2865#0" expanded="true" />
-            <element signature="e#2906#2907#0" expanded="true" />
-            <element signature="e#2978#2979#0" expanded="true" />
-            <element signature="e#3040#3041#0" expanded="true" />
-            <element signature="e#3086#3087#0" expanded="true" />
-            <element signature="e#3117#3118#0" expanded="true" />
-            <element signature="e#3182#3183#0" expanded="true" />
-            <element signature="e#3227#3228#0" expanded="true" />
-            <element signature="e#3271#3272#0" expanded="true" />
-            <element signature="e#3299#3300#0" expanded="true" />
-            <element signature="e#3374#3375#0" expanded="true" />
-            <element signature="e#3411#3412#0" expanded="true" />
-            <element signature="e#3777#3778#0" expanded="true" />
-            <element signature="e#3818#3819#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -1118,50 +1129,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/test_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" selection-start-line="9" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.7.1/junit-platform-commons-1.7.1.jar!/org/junit/platform/commons/util/ReflectionUtils.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="360" column="5" selection-start-line="360" selection-start-column="5" selection-end-line="360" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/CacheConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#770#771#0" expanded="true" />
-            <element signature="e#800#801#0" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-            <element signature="e#885#886#0" expanded="true" />
-            <element signature="e#749#750#0" expanded="true" />
-            <element signature="e#787#788#0" expanded="true" />
-            <element signature="e#846#847#0" expanded="true" />
-            <element signature="e#900#901#0" expanded="true" />
-            <element signature="e#931#932#0" expanded="true" />
-            <element signature="e#961#962#0" expanded="true" />
-            <element signature="e#1004#1005#0" expanded="true" />
-            <element signature="e#1042#1043#0" expanded="true" />
-            <element signature="e#1082#1083#0" expanded="true" />
-            <element signature="e#1116#1117#0" expanded="true" />
-            <element signature="e#1172#1173#0" expanded="true" />
-            <element signature="e#1218#1219#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1188,26 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/QueueConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="72" column="40" selection-start-line="72" selection-start-column="15" selection-end-line="72" selection-end-column="40" />
-          <folding>
-            <element signature="e#1669#1670#0" expanded="true" />
-            <element signature="e#1717#1718#0" expanded="true" />
-            <element signature="e#2614#2615#0" expanded="true" />
-            <element signature="e#2649#2650#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/30.1-jre/guava-30.1-jre.jar!/com/google/common/base/Splitter.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
@@ -1219,27 +1170,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/ConsumerGroupConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="e#668#669#0" expanded="true" />
-            <element signature="e#696#697#0" expanded="true" />
-            <element signature="e#738#739#0" expanded="true" />
-            <element signature="e#772#773#0" expanded="true" />
-            <element signature="e#811#812#0" expanded="true" />
-            <element signature="e#849#850#0" expanded="true" />
-            <element signature="e#908#909#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#1149#1150#0" expanded="true" />
-            <element signature="e#1179#1180#0" expanded="true" />
-            <element signature="e#1227#1228#0" expanded="true" />
-            <element signature="e#1265#1266#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1269,37 +1199,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/network/ConsumerConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="49" column="63" selection-start-line="49" selection-start-column="63" selection-end-line="49" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1460#1461#0" expanded="true" />
-            <element signature="e#1532#1533#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-533">
-          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="66" column="39" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2223#2224#0" expanded="true" />
-            <element signature="e#2252#2253#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerConnectionTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1247">
@@ -1310,41 +1209,193 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/JsonInsertTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/network/ConsumerConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="44" column="18" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1460#1461#0" expanded="true" />
+            <element signature="e#1531#1532#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-api/9.4.37.v20210219/websocket-api-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/api/RemoteEndpoint.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/network/BaseWebSocketConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-407">
+          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1144#1145#0" expanded="true" />
+            <element signature="e#1197#1198#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/CacheConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/db/QDbWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="34" column="105" selection-start-line="34" selection-start-column="93" selection-end-line="34" selection-end-column="105" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="216">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/queue_schema.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-435">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="143" column="10" selection-start-line="143" selection-start-column="10" selection-end-line="143" selection-end-column="10" />
+        <state relative-caret-position="135">
+          <caret line="41" column="67" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1962#1963#0" expanded="true" />
-            <element signature="e#1992#1993#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/ConsumerGroupConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="75" column="66" selection-start-line="75" selection-start-column="66" selection-end-line="75" selection-end-column="66" />
+          <folding>
+            <element signature="e#3626#3627#0" expanded="true" />
+            <element signature="e#3663#3664#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="362" column="16" selection-start-line="362" selection-start-column="16" selection-end-line="362" selection-end-column="16" />
+        <state relative-caret-position="82">
+          <caret line="45" column="47" selection-start-line="45" selection-start-column="47" selection-end-line="45" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3823#3824#0" expanded="true" />
+            <element signature="e#3871#3872#0" expanded="true" />
+            <element signature="e#3920#3921#0" expanded="true" />
+            <element signature="e#3969#3970#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="653">
+          <caret line="37" lean-forward="true" selection-start-line="34" selection-end-line="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/JsonInsertTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="36" column="54" lean-forward="true" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+        <state relative-caret-position="205">
+          <caret line="290" column="36" selection-start-line="290" selection-start-column="36" selection-end-line="290" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/QueueWriterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="942">
+          <caret line="69" column="16" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/test_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/WriterConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+          <folding>
+            <element signature="e#2083#2084#0" expanded="true" />
+            <element signature="e#2127#2128#0" expanded="true" />
+            <element signature="e#2165#2166#0" expanded="true" />
+            <element signature="e#2206#2207#0" expanded="true" />
+            <element signature="e#2241#2242#0" expanded="true" />
+            <element signature="e#2299#2300#0" expanded="true" />
+            <element signature="e#2347#2348#0" expanded="true" />
           </folding>
         </state>
       </provider>
