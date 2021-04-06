@@ -43,7 +43,7 @@ public class QDbReader {
         this.qDbWriter = qDbWriter;
         this.jdbi = jdbi;
         this.ckptName = cgName;
-        this.fetchSize = cgConfig.getSelectBatchSize();
+        this.fetchSize = cgConfig.getFetchBatchSize();
         this.timeout = cgConfig.getTimeOut().toMilliseconds();
         this.selectSQL = String.format("SELECT id, mesg FROM %s WHERE id > ? AND %s AND type is NULL",
                 writerConfig.getTableName(), cgConfig.getQuery());
@@ -98,11 +98,15 @@ public class QDbReader {
         }
     }
 
+    public boolean hasMoreMessages() {
+        return (qDbWriter.getLastWrittenMessageId() > lastReadMessageId);
+    }
+
     public boolean loadNextBatchOfMessages(final Collection<String> messages) {
         // Persist checkpoint only after all messages in the batch are dispatched to clients
         saveCheckpoint();
 
-        if (qDbWriter.getLastWrittenMessageId() <= lastReadMessageId) {
+        if (!hasMoreMessages()) {
             return false; // Writer hasn't advanced
         }
 

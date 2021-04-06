@@ -2,7 +2,6 @@ package org.queasy.core.config;
 
 import io.dropwizard.util.Duration;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -22,7 +21,7 @@ public class ConsumerGroupConfiguration {
      * How many messages to select in a single batch or poll
      */
     @NotNull
-    private int selectBatchSize = 128;
+    private int fetchBatchSize = 128;
 
     /**
      * Queue client timeout. If no message is received in the time window client receives a :TIMEOUT status
@@ -38,12 +37,12 @@ public class ConsumerGroupConfiguration {
         this.query = query;
     }
 
-    public int getSelectBatchSize() {
-        return selectBatchSize;
+    public int getFetchBatchSize() {
+        return fetchBatchSize;
     }
 
-    public void setSelectBatchSize(int selectBatchSize) {
-        this.selectBatchSize = selectBatchSize;
+    public void setFetchBatchSize(int fetchBatchSize) {
+        this.fetchBatchSize = fetchBatchSize;
     }
 
     public Duration getTimeOut() {

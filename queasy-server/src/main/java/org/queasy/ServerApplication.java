@@ -13,12 +13,15 @@ import org.jdbi.v3.core.Jdbi;
 import org.queasy.core.bundles.QueasyMigrationBundle;
 import org.queasy.core.config.CacheConfiguration;
 import org.queasy.core.config.ConsumerGroupConfiguration;
+import org.queasy.core.config.TopicConfiguration;
 import org.queasy.core.config.WriterConfiguration;
 import org.queasy.core.config.WebSocketConfiguration;
 import org.queasy.core.managed.ConsumerGroup;
 import org.queasy.core.managed.QueueWriter;
+import org.queasy.core.managed.Topic;
 import org.queasy.core.network.ConsumerGroupWebSocketCreator;
 import org.queasy.core.network.ProducerWebSocketCreator;
+import org.queasy.core.network.TopicSubscriptionWebSocketCreator;
 import org.queasy.core.util.Snowflake;
 import org.queasy.db.QDbReader;
 import org.queasy.db.QDbWriter;
@@ -32,6 +35,7 @@ public class ServerApplication extends Application<ServerConfiguration> {
 
     public static final String PUBLISH_PATH = "publish";
     public static final String DEQUEUE_PATH = "dequeue";
+    public static final String SUBSCRIBE_PATH = "subscribe";
 
     public static void main(final String[] args) throws Exception {
         new ServerApplication().run(args);
@@ -66,13 +70,14 @@ public class ServerApplication extends Application<ServerConfiguration> {
         //Thread pool to handle consumer groups
         final ScheduledExecutorService cgPool = env.lifecycle()
                 .scheduledExecutorService("cg-dispatcher-")
-                .threads(config.getConsumerGroupsThreadPoolSize())
+                .threads(config.getMessageDispatcherThreadPoolSize())
                 .shutdownTime(config.getShutdownGracePeriod())
                 .build();
 
         final long pollInterval = config.getNewMessagePollInterval().toMilliseconds();
         final WebSocketConfiguration wsConfig = config.getWebSocketConfiguration();
         final Map<String, ConsumerGroupConfiguration> cgConfigs = config.getConsumerGroups();
+        final Map<String, TopicConfiguration> topicConfigs = config.getTopics();
         final ServletContextHandler servletCtxHandler = env.getApplicationContext();
 
         NativeWebSocketServletContainerInitializer.configure(servletCtxHandler, ((servletContext, nativeWebSocketConfiguration) -> {
@@ -82,15 +87,31 @@ public class ServerApplication extends Application<ServerConfiguration> {
                     config.getMaxConnections(), queueWriter));
 
             // Set up consumer groups WebSocket handlers
-            for (Map.Entry<String, ConsumerGroupConfiguration> cg : cgConfigs.entrySet()) {
-                final String cgName  = cg.getKey();
-                final ConsumerGroupConfiguration cgConfig = cg.getValue();
-                final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, writerConfig, cgName, cgConfig, messageCache);
-                final ConsumerGroup consumerGroup = new ConsumerGroup(qDbReader);
-                nativeWebSocketConfiguration.addMapping(String.format("/%s/%s/*", DEQUEUE_PATH, cgName),
-                        new ConsumerGroupWebSocketCreator(wsConfig.getOrigin(), config.getMaxConnections(), consumerGroup));
-                env.lifecycle().manage(consumerGroup);
-                cgPool.scheduleAtFixedRate(consumerGroup, pollInterval, pollInterval, TimeUnit.MILLISECONDS);
+            if (cgConfigs != null) {
+                for (Map.Entry<String, ConsumerGroupConfiguration> cg : cgConfigs.entrySet()) {
+                    final String cgName = cg.getKey();
+                    final ConsumerGroupConfiguration cgConfig = cg.getValue();
+                    final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, writerConfig, cgName, cgConfig, messageCache);
+                    final ConsumerGroup consumerGroup = new ConsumerGroup(qDbReader);
+                    nativeWebSocketConfiguration.addMapping(String.format("/%s/%s", DEQUEUE_PATH, cgName),
+                            new ConsumerGroupWebSocketCreator(wsConfig.getOrigin(), config.getMaxConnections(), consumerGroup));
+                    env.lifecycle().manage(consumerGroup);
+                    cgPool.scheduleAtFixedRate(consumerGroup, pollInterval, pollInterval, TimeUnit.MILLISECONDS);
+                }
+            }
+
+            // Set up topics WebSocket handlers
+            if (topicConfigs != null) {
+                for (Map.Entry<String, TopicConfiguration> tpc : topicConfigs.entrySet()) {
+                    final String topicName = tpc.getKey();
+                    final TopicConfiguration tpcConfig = tpc.getValue();
+                    final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, writerConfig, topicName, tpcConfig, messageCache);
+                    final Topic topic = new Topic(tpcConfig, qDbReader);
+                    nativeWebSocketConfiguration.addMapping(String.format("/%s/%s", SUBSCRIBE_PATH, topicName),
+                            new TopicSubscriptionWebSocketCreator(wsConfig.getOrigin(), config.getMaxConnections(), topic));
+                    env.lifecycle().manage(topic);
+                    cgPool.scheduleAtFixedRate(topic, pollInterval, pollInterval, TimeUnit.MILLISECONDS);
+                }
             }
         }));
 

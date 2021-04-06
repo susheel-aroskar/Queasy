@@ -20,4 +20,4 @@ writerConfiguration:
 consumerGroups:
   testCG:
     query: qname = 'testQ'
-    selectBatchSize: 2
+    fetchBatchSize: 2

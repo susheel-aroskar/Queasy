@@ -5,7 +5,7 @@ logging:
 
 hostId: 0
 maxConnections: 1024
-consumerGroupsThreadPoolSize: 4
+messageDispatcherThreadPoolSize: 4
 newMessagePollInterval: 200ms
 shutdownGracePeriod: 30s
 
@@ -39,8 +39,8 @@ writerConfiguration:
 
 consumerGroups:
   default:
-    queueName: temp
-    selectBatchSize: 512
+    fetchBatchSize: 512
+    query: qname = 'testQ'
 
 #replication:
 #  -

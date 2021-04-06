@@ -43,27 +43,16 @@ public abstract class BaseWebSocketConnection extends WebSocketAdapter implement
         getRemote().sendString(message, this);
     }
 
-    @Override
-    public void writeSuccess() {
-        //override in subclass, if necessary
-    }
-
-    @Override
-    public void writeFailed(final Throwable t) {
-        getSession().close();
-        logger.error("Error while writing to client", t);
-    }
-
-
     protected final void sendStatus(final Status status) {
         writeMessage(status.toString());
     }
 
     @Override
-    public void onWebSocketConnect(Session sess) {
+    public final void onWebSocketConnect(Session sess) {
         super.onWebSocketConnect(sess);
         if (isConnected.compareAndSet(false, true)) {
             final int count = connectionCount.incrementAndGet();
+            onConnect();
             logger.debug("WEBSOCKET CONNECT #{}", count);
         }
     }
@@ -73,6 +62,7 @@ public abstract class BaseWebSocketConnection extends WebSocketAdapter implement
         super.onWebSocketClose(statusCode, reason);
         if (isConnected.compareAndSet(true, false)) {
             final int count = connectionCount.decrementAndGet();
+            onDisconnect();
             logger.debug("WEBSOCKET CLOSE #{}", count);
         }
     }
@@ -82,8 +72,30 @@ public abstract class BaseWebSocketConnection extends WebSocketAdapter implement
         super.onWebSocketError(cause);
         if (isConnected.compareAndSet(true, false)) {
             final int count = connectionCount.decrementAndGet();
+            onDisconnect();
             logger.debug("WEBSOCKET ERROR #{}", count);
         }
+    }
+
+    /** Hooks for subclasses **/
+
+    protected void onConnect() {
+        //override in subclass, if necessary
+    }
+
+    protected void onDisconnect() {
+        //override in subclass, if necessary
+    }
+
+    @Override
+    public void writeSuccess() {
+        //override in subclass, if necessary
+    }
+
+    @Override
+    public void writeFailed(final Throwable t) {
+        getSession().close();
+        logger.error("Error while writing to client", t);
     }
 
 }

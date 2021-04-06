@@ -315,7 +315,7 @@ public class ConsumerGroupTests {
         Mockito.verify(conn).sendMessage(Mockito.endsWith("test_2}"));
         conn.onWebSocketText(Command.DEQUEUE.toString());
         final long secondMesgId = qDbReader.getLastReadMessageId();
-        cg.run(); // selectBatchSize: 2 in config. Need to fetch again from the DB
+        cg.run(); // fetchBatchSize: 2 in config. Need to fetch again from the DB
         assertEquals(secondMesgId, readCheckPointFromDb());
         assertEquals(2L, qDbReader.getReadBatchId());
         Mockito.verify(conn).sendMessage(QDbReader.buildMessage(qDbWriter.getLastWrittenMessageId(), "test_3"));

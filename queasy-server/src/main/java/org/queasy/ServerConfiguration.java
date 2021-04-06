@@ -5,6 +5,7 @@ import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.util.Duration;
 import org.queasy.core.config.CacheConfiguration;
 import org.queasy.core.config.ConsumerGroupConfiguration;
+import org.queasy.core.config.TopicConfiguration;
 import org.queasy.core.config.WriterConfiguration;
 import org.queasy.core.config.WebSocketConfiguration;
 
@@ -34,7 +35,7 @@ public class ServerConfiguration extends Configuration {
      */
     @NotNull
     @Min(2)
-    private int consumerGroupsThreadPoolSize = 8;
+    private int messageDispatcherThreadPoolSize = 8;
 
     /**
      * Poll interval to check for new messages. It's a very inexpensive operation,
@@ -72,8 +73,13 @@ public class ServerConfiguration extends Configuration {
      * Consumer groups config
      */
     @Valid
-    @NotNull
     private Map<String, ConsumerGroupConfiguration> consumerGroups;
+
+    /**
+     * Topics config
+     */
+    @Valid
+    private Map<String, TopicConfiguration> topics;
 
     /**
      * System-wide message cache configuration
@@ -100,12 +106,12 @@ public class ServerConfiguration extends Configuration {
         this.maxConnections = maxConnections;
     }
 
-    public int getConsumerGroupsThreadPoolSize() {
-        return consumerGroupsThreadPoolSize;
+    public int getMessageDispatcherThreadPoolSize() {
+        return messageDispatcherThreadPoolSize;
     }
 
-    public void setConsumerGroupsThreadPoolSize(int consumerGroupsThreadPoolSize) {
-        this.consumerGroupsThreadPoolSize = consumerGroupsThreadPoolSize;
+    public void setMessageDispatcherThreadPoolSize(int messageDispatcherThreadPoolSize) {
+        this.messageDispatcherThreadPoolSize = messageDispatcherThreadPoolSize;
     }
 
     public Duration getNewMessagePollInterval() {
@@ -143,6 +149,14 @@ public class ServerConfiguration extends Configuration {
 
     public void setConsumerGroups(Map<String, ConsumerGroupConfiguration> consumerGroups) {
         this.consumerGroups = consumerGroups;
+    }
+
+    public Map<String, TopicConfiguration> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(Map<String, TopicConfiguration> topics) {
+        this.topics = topics;
     }
 
     public CacheConfiguration getCacheConfiguration() {
