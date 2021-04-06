@@ -20,6 +20,7 @@ import org.queasy.core.NoRunTestApplication;
 import org.queasy.core.config.CacheConfiguration;
 import org.queasy.core.config.ConsumerGroupConfiguration;
 import org.queasy.core.config.WriterConfiguration;
+import org.queasy.core.network.Command;
 import org.queasy.core.network.ConsumerConnection;
 import org.queasy.core.util.Snowflake;
 import org.queasy.db.QDbReader;
@@ -145,7 +146,7 @@ public class ConsumerGroupTests {
         Thread.sleep(100);
         cg.start();
         ConsumerConnection conn = makeConsumerConn(cg);
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         assertEquals(0L, qDbReader.getLastReadMessageId());
         assertEquals(ImmutableList.of(conn), cg.getClients());
         assertEquals(Collections.emptyList(), cg.getMessages());
@@ -165,7 +166,7 @@ public class ConsumerGroupTests {
         Thread.sleep(100);
         final long id2 = qDbWriter.getLastWrittenMessageId();
         ConsumerConnection conn = makeConsumerConn(cg);
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         cg.run();
         Mockito.verify(conn).sendMessage(QDbReader.buildMessage(id1 ,"test_1"));
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
@@ -184,12 +185,12 @@ public class ConsumerGroupTests {
         queueWriter.start();
         Thread.sleep(100);
         ConsumerConnection conn1 = makeConsumerConn(cg);
-        conn1.onWebSocketText("#GET");
+        conn1.onWebSocketText(Command.DEQUEUE.toString());
         cg.run();
         Mockito.verify(conn1).sendMessage(Mockito.endsWith("test_1}"));
 
         ConsumerConnection conn2 = makeConsumerConn(cg);
-        conn2.onWebSocketText("#GET");
+        conn2.onWebSocketText(Command.DEQUEUE.toString());
         Mockito.verify(conn2).sendMessage(QDbReader.buildMessage(qDbWriter.getLastWrittenMessageId(), "test_2"));
 
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
@@ -217,8 +218,8 @@ public class ConsumerGroupTests {
         Thread.sleep(100);
         ConsumerConnection conn1 = makeConsumerConn(cg);
         ConsumerConnection connB1 = makeConsumerConn(cg2);
-        conn1.onWebSocketText("#GET");
-        connB1.onWebSocketText("#GET");
+        conn1.onWebSocketText(Command.DEQUEUE.toString());
+        connB1.onWebSocketText(Command.DEQUEUE.toString());
 
         cg.run();
         cg2.run();
@@ -231,8 +232,8 @@ public class ConsumerGroupTests {
 
         ConsumerConnection conn2 = makeConsumerConn(cg);
         ConsumerConnection connB2 = makeConsumerConn(cg2);
-        conn2.onWebSocketText("#GET");
-        connB2.onWebSocketText("#GET");
+        conn2.onWebSocketText(Command.DEQUEUE.toString());
+        connB2.onWebSocketText(Command.DEQUEUE.toString());
         Mockito.verify(conn2).sendMessage(messageCaptor.capture());
         Mockito.verify(connB2).sendMessage(messageCaptor.capture());
         mesgs = messageCaptor.getAllValues();
@@ -266,8 +267,8 @@ public class ConsumerGroupTests {
         Thread.sleep(100);
         ConsumerConnection conn1 = makeConsumerConn(cg);
         ConsumerConnection connB1 = makeConsumerConn(cg2);
-        conn1.onWebSocketText("#GET");
-        connB1.onWebSocketText("#GET");
+        conn1.onWebSocketText(Command.DEQUEUE.toString());
+        connB1.onWebSocketText(Command.DEQUEUE.toString());
 
         cg.run();
         cg2.run();
@@ -280,8 +281,8 @@ public class ConsumerGroupTests {
 
         ConsumerConnection conn2 = makeConsumerConn(cg);
         ConsumerConnection connB2 = makeConsumerConn(cg2);
-        conn2.onWebSocketText("#GET");
-        connB2.onWebSocketText("#GET");
+        conn2.onWebSocketText(Command.DEQUEUE.toString());
+        connB2.onWebSocketText(Command.DEQUEUE.toString());
         Mockito.verify(conn2).sendMessage(messageCaptor.capture());
         Mockito.verify(connB2).sendMessage(messageCaptor.capture());
         mesgs = messageCaptor.getAllValues();
@@ -306,20 +307,20 @@ public class ConsumerGroupTests {
         queueWriter.start();
         Thread.sleep(100);
         ConsumerConnection conn = makeConsumerConn(cg);
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         cg.run();
         assertEquals(1L, qDbReader.getReadBatchId());
         Mockito.verify(conn).sendMessage(Mockito.endsWith("test_1}"));
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         Mockito.verify(conn).sendMessage(Mockito.endsWith("test_2}"));
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         final long secondMesgId = qDbReader.getLastReadMessageId();
         cg.run(); // selectBatchSize: 2 in config. Need to fetch again from the DB
         assertEquals(secondMesgId, readCheckPointFromDb());
         assertEquals(2L, qDbReader.getReadBatchId());
         Mockito.verify(conn).sendMessage(QDbReader.buildMessage(qDbWriter.getLastWrittenMessageId(), "test_3"));
 
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         cg.run();
         assertEquals(ImmutableList.of(conn), cg.getClients());
         assertEquals(Collections.emptyList(), cg.getMessages());
@@ -356,14 +357,14 @@ public class ConsumerGroupTests {
         Thread.sleep(100);
 
         final ConsumerConnection conn = makeConsumerConn(cg);
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         cg.run();
         assertEquals(1L, qDbReader.getReadBatchId());
         assertEquals(ImmutableList.of(QDbReader.buildMessage(qDbWriter.getLastWrittenMessageId(), "test_2"))
                 , cg.getMessages());
 
-        conn.onWebSocketText("#GET");
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         cg.run();
 
         assertEquals(ImmutableList.of(conn), cg.getClients());
@@ -377,7 +378,7 @@ public class ConsumerGroupTests {
     public void testLoadNewMessagesWhenProducerAdvances() throws Exception {
         cg.start();
         final ConsumerConnection conn = makeConsumerConn(cg);
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         cg.run();
         assertEquals(0L, qDbReader.getReadBatchId());
         assertEquals(0L, qDbReader.getLastReadMessageId());
@@ -397,8 +398,8 @@ public class ConsumerGroupTests {
         assertEquals(1L, qDbReader.getReadBatchId());
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
 
-        conn.onWebSocketText("#GET");
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         cg.run();
         assertEquals(ImmutableList.of(conn), cg.getClients());
         assertEquals(Collections.emptyList(), cg.getMessages());
@@ -411,7 +412,7 @@ public class ConsumerGroupTests {
     private void testCheckpointAdvancesWithNoMatchingMessagePublish() throws Exception {
         cg.start();
         final ConsumerConnection conn = makeConsumerConn(cg);
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         cg.run();
         assertEquals(0L, qDbReader.getReadBatchId());
         assertEquals(0L, qDbReader.getLastReadMessageId());
@@ -427,9 +428,9 @@ public class ConsumerGroupTests {
         assertEquals(1L, qDbReader.getReadBatchId());
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
 
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
         Mockito.verify(conn).sendMessage(QDbReader.buildMessage(id, "test_2"));
-        conn.onWebSocketText("#GET");
+        conn.onWebSocketText(Command.DEQUEUE.toString());
 
         //publish messages to wrong queue
         queueWriter.publish(makeMessage("someQ", "test_3"));

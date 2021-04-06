@@ -18,6 +18,8 @@ import java.net.URI;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.queasy.ServerApplication.DEQUEUE_PATH;
+import static org.queasy.ServerApplication.PUBLISH_PATH;
 
 /**
  * @author saroskar
@@ -34,7 +36,7 @@ public class ProducerWebSocketTests {
     public void testHappyPath() throws Exception {
         final ServletUpgradeRequest request = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(request.getOrigin()).thenReturn("foo.com");
-        Mockito.when(request.getRequestURI()).thenReturn(new URI("/nq/test"));
+        Mockito.when(request.getRequestURI()).thenReturn(new URI(String.format("/%s/test", PUBLISH_PATH)));
         final ServletUpgradeResponse response = Mockito.mock(ServletUpgradeResponse.class);
         ProducerWebSocketCreator creator = new ProducerWebSocketCreator("foo.com", 4, null);
         final ProducerConnection conn = (ProducerConnection) creator.createWebSocket(request, response);
@@ -45,7 +47,7 @@ public class ProducerWebSocketTests {
     public void testWrongOrigin() throws Exception {
         final ServletUpgradeRequest request = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(request.getOrigin()).thenReturn("foo.com");
-        Mockito.when(request.getRequestURI()).thenReturn(new URI("/nq/test"));
+        Mockito.when(request.getRequestURI()).thenReturn(new URI(String.format("/%s/test", PUBLISH_PATH)));
         final ServletUpgradeResponse response = new ServletUpgradeResponse(null);
         final ServletUpgradeResponse response1 = Mockito.spy(response);
         ProducerWebSocketCreator creator = new ProducerWebSocketCreator("foo1.com", 4, null);
@@ -58,7 +60,7 @@ public class ProducerWebSocketTests {
     public void testWrongURI1() throws Exception {
         final ServletUpgradeRequest request = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(request.getOrigin()).thenReturn("foo.com");
-        Mockito.when(request.getRequestURI()).thenReturn(new URI("/dq/test"));
+        Mockito.when(request.getRequestURI()).thenReturn(new URI(String.format("/%s/test", DEQUEUE_PATH)));
         final ServletUpgradeResponse response = new ServletUpgradeResponse(null);
         final ServletUpgradeResponse response1 = Mockito.spy(response);
         ProducerWebSocketCreator creator = new ProducerWebSocketCreator("foo.com", 4, null);
@@ -71,7 +73,7 @@ public class ProducerWebSocketTests {
     public void testWrongURI2() throws Exception {
         final ServletUpgradeRequest request = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(request.getOrigin()).thenReturn("foo.com");
-        Mockito.when(request.getRequestURI()).thenReturn(new URI("/nq/test/too/long"));
+        Mockito.when(request.getRequestURI()).thenReturn(new URI(String.format("/%s/test/too/long", PUBLISH_PATH)));
         final ServletUpgradeResponse response = new ServletUpgradeResponse(null);
         final ServletUpgradeResponse response1 = Mockito.spy(response);
         ProducerWebSocketCreator creator = new ProducerWebSocketCreator("foo.com", 4, null);
@@ -84,7 +86,7 @@ public class ProducerWebSocketTests {
     public void testMaxConnectionsError() throws Exception {
         final ServletUpgradeRequest request = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(request.getOrigin()).thenReturn("foo.com");
-        Mockito.when(request.getRequestURI()).thenReturn(new URI("/nq/test"));
+        Mockito.when(request.getRequestURI()).thenReturn(new URI(String.format("/%s/test", PUBLISH_PATH)));
         final ServletUpgradeResponse response = new ServletUpgradeResponse(null);
         final ServletUpgradeResponse response1 = Mockito.spy(response);
         ProducerWebSocketCreator creator = new ProducerWebSocketCreator("foo.com", 2, null);
@@ -107,15 +109,15 @@ public class ProducerWebSocketTests {
     public void testInvalidConnectionsDoNotCountTowardsMaxConnections() throws Exception {
         final ServletUpgradeRequest request = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(request.getOrigin()).thenReturn("foo.com");
-        Mockito.when(request.getRequestURI()).thenReturn(new URI("/nq/test"));
+        Mockito.when(request.getRequestURI()).thenReturn(new URI(String.format("/%s/test", PUBLISH_PATH)));
 
         final ServletUpgradeRequest invalidRequest1 = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(invalidRequest1.getOrigin()).thenReturn("foo1.com");
-        Mockito.when(invalidRequest1.getRequestURI()).thenReturn(new URI("/nq/test"));
+        Mockito.when(invalidRequest1.getRequestURI()).thenReturn(new URI(String.format("/%s/test", PUBLISH_PATH)));
 
         final ServletUpgradeRequest invalidRequest2 = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(invalidRequest2.getOrigin()).thenReturn("foo.com");
-        Mockito.when(invalidRequest2.getRequestURI()).thenReturn(new URI("/dq/test"));
+        Mockito.when(invalidRequest2.getRequestURI()).thenReturn(new URI(String.format("/%s/test", DEQUEUE_PATH)));
 
         final ServletUpgradeResponse response = new ServletUpgradeResponse(null);
         final ServletUpgradeResponse response1 = Mockito.spy(response);
@@ -148,15 +150,15 @@ public class ProducerWebSocketTests {
     public void testClosedAndInvalidConnectionsDoNotCountTowardsMaxConnections() throws Exception {
         final ServletUpgradeRequest request = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(request.getOrigin()).thenReturn("foo.com");
-        Mockito.when(request.getRequestURI()).thenReturn(new URI("/nq/test"));
+        Mockito.when(request.getRequestURI()).thenReturn(new URI(String.format("/%s/test", PUBLISH_PATH)));
 
         final ServletUpgradeRequest invalidRequest1 = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(invalidRequest1.getOrigin()).thenReturn("foo1.com");
-        Mockito.when(invalidRequest1.getRequestURI()).thenReturn(new URI("/nq/test"));
+        Mockito.when(invalidRequest1.getRequestURI()).thenReturn(new URI(String.format("/%s/test", PUBLISH_PATH)));
 
         final ServletUpgradeRequest invalidRequest2 = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(invalidRequest2.getOrigin()).thenReturn("foo.com");
-        Mockito.when(invalidRequest2.getRequestURI()).thenReturn(new URI("/dq/test"));
+        Mockito.when(invalidRequest2.getRequestURI()).thenReturn(new URI(String.format("/%s/test", DEQUEUE_PATH)));
 
         final ServletUpgradeResponse response = new ServletUpgradeResponse(null);
         final ServletUpgradeResponse response1 = Mockito.spy(response);
@@ -202,15 +204,15 @@ public class ProducerWebSocketTests {
     public void testSomeClosesAndSomeErrors() throws Exception {
         final ServletUpgradeRequest request = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(request.getOrigin()).thenReturn("foo.com");
-        Mockito.when(request.getRequestURI()).thenReturn(new URI("/nq/test"));
+        Mockito.when(request.getRequestURI()).thenReturn(new URI(String.format("/%s/test", PUBLISH_PATH)));
 
         final ServletUpgradeRequest invalidRequest1 = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(invalidRequest1.getOrigin()).thenReturn("foo1.com");
-        Mockito.when(invalidRequest1.getRequestURI()).thenReturn(new URI("/nq/test"));
+        Mockito.when(invalidRequest1.getRequestURI()).thenReturn(new URI(String.format("/%s/test", PUBLISH_PATH)));
 
         final ServletUpgradeRequest invalidRequest2 = Mockito.mock(ServletUpgradeRequest.class);
         Mockito.when(invalidRequest2.getOrigin()).thenReturn("foo.com");
-        Mockito.when(invalidRequest2.getRequestURI()).thenReturn(new URI("/dq/test"));
+        Mockito.when(invalidRequest2.getRequestURI()).thenReturn(new URI(String.format("/%s/test", DEQUEUE_PATH)));
 
         final ServletUpgradeResponse response = new ServletUpgradeResponse(null);
         final ServletUpgradeResponse response1 = Mockito.spy(response);
@@ -248,14 +250,14 @@ public class ProducerWebSocketTests {
     }
 
     @Test
-    public void testWriteMessageHappyPath() throws IOException  {
+    public void testWriteMessageHappyPath() throws IOException {
         final Session session = Mockito.mock(Session.class);
         final RemoteEndpoint remote = Mockito.mock(RemoteEndpoint.class);
         Mockito.doReturn(remote).when(session).getRemote();
 
         final WriterConfiguration wc = new WriterConfiguration();
         wc.setRingBufferSize(2);
-        final QueueWriter qw = new QueueWriter(wc,null);
+        final QueueWriter qw = new QueueWriter(wc, null);
         final ProducerConnection conn = new ProducerConnection(qw, "test");
         conn.onWebSocketConnect(session);
 
@@ -264,7 +266,7 @@ public class ProducerWebSocketTests {
     }
 
     @Test
-    public void testTimeOutOnFull() throws IOException  {
+    public void testTimeOutOnFull() throws IOException {
         final Session session = Mockito.mock(Session.class);
         final RemoteEndpoint remote = Mockito.mock(RemoteEndpoint.class);
         Mockito.doReturn(remote).when(session).getRemote();
@@ -272,7 +274,7 @@ public class ProducerWebSocketTests {
         final WriterConfiguration wc = new WriterConfiguration();
         wc.setRingBufferSize(1);
         wc.setWriteTimeout(Duration.milliseconds(10));
-        final QueueWriter qw = new QueueWriter(wc,null);
+        final QueueWriter qw = new QueueWriter(wc, null);
         final ProducerConnection conn = new ProducerConnection(qw, "test");
         conn.onWebSocketConnect(session);
 
@@ -283,7 +285,7 @@ public class ProducerWebSocketTests {
     }
 
     @Test
-    public void testBusy() throws Exception  {
+    public void testBusy() throws Exception {
         final Session session = Mockito.mock(Session.class);
         final RemoteEndpoint remote = Mockito.mock(RemoteEndpoint.class);
         Mockito.doReturn(remote).when(session).getRemote();
@@ -291,7 +293,7 @@ public class ProducerWebSocketTests {
         final WriterConfiguration wc = new WriterConfiguration();
         wc.setRingBufferSize(1);
         wc.setWriteTimeout(Duration.seconds(1));
-        final QueueWriter qw = new QueueWriter(wc,null);
+        final QueueWriter qw = new QueueWriter(wc, null);
         final ProducerConnection conn = new ProducerConnection(qw, "test");
         conn.onWebSocketConnect(session);
 

@@ -12,9 +12,7 @@ import java.util.List;
  */
 public enum Command {
 
-    GET,
-    RECONNECT,
-    PING;
+    DEQUEUE;
 
     private final String cmd;
 

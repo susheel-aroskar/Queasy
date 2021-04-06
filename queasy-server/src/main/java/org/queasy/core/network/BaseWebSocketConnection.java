@@ -19,11 +19,15 @@ public abstract class BaseWebSocketConnection extends WebSocketAdapter implement
     private final static AtomicInteger connectionCount = new AtomicInteger(0);
     private static final Logger logger = LoggerFactory.getLogger(BaseWebSocketConnection.class);
 
-    private final AtomicBoolean isCounted;
+    private final AtomicBoolean isConnected;
 
     protected BaseWebSocketConnection() {
-        isCounted = new AtomicBoolean();
+        isConnected = new AtomicBoolean();
     }
+
+//    public boolean isClosed() {
+//        return !isConnected.get();
+//    }
 
     public static int getConnectionCount() {
         return connectionCount.get();
@@ -40,45 +44,46 @@ public abstract class BaseWebSocketConnection extends WebSocketAdapter implement
     }
 
     @Override
-    public void writeFailed(final Throwable t) {
-        logger.error("Error while writing to client", t);
-        getSession().close();
-    }
-
-    @Override
     public void writeSuccess() {
         //override in subclass, if necessary
     }
+
+    @Override
+    public void writeFailed(final Throwable t) {
+        getSession().close();
+        logger.error("Error while writing to client", t);
+    }
+
 
     protected final void sendStatus(final Status status) {
         writeMessage(status.toString());
     }
 
     @Override
-    public final void onWebSocketConnect(Session sess) {
-        if (isCounted.compareAndSet(false, true)) {
+    public void onWebSocketConnect(Session sess) {
+        super.onWebSocketConnect(sess);
+        if (isConnected.compareAndSet(false, true)) {
             final int count = connectionCount.incrementAndGet();
             logger.debug("WEBSOCKET CONNECT #{}", count);
         }
-        super.onWebSocketConnect(sess);
     }
 
     @Override
     public final void onWebSocketClose(int statusCode, String reason) {
-        if (isCounted.compareAndSet(true, false)) {
+        super.onWebSocketClose(statusCode, reason);
+        if (isConnected.compareAndSet(true, false)) {
             final int count = connectionCount.decrementAndGet();
             logger.debug("WEBSOCKET CLOSE #{}", count);
         }
-        super.onWebSocketClose(statusCode, reason);
     }
 
     @Override
     public final void onWebSocketError(Throwable cause) {
-        if (isCounted.compareAndSet(true, false)) {
+        super.onWebSocketError(cause);
+        if (isConnected.compareAndSet(true, false)) {
             final int count = connectionCount.decrementAndGet();
             logger.debug("WEBSOCKET ERROR #{}", count);
         }
-        super.onWebSocketError(cause);
     }
 
 }

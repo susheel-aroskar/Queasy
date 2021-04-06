@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.queasy.core.network.Command.GET;
+import static org.queasy.core.network.Command.DEQUEUE;
 
 /**
  * @author saroskar
@@ -28,7 +28,7 @@ public class ConsumerConnection extends BaseWebSocketConnection {
 
     @Override
     public void onWebSocketText(final String message) {
-        if (GET.matches(message) && awaitingMessage.compareAndSet(false, true)) {
+        if (DEQUEUE.matches(message) && awaitingMessage.compareAndSet(false, true)) {
             try {
                 startTS = System.currentTimeMillis();
                 consumerGroup.waitForMessage(this);
@@ -40,10 +40,9 @@ public class ConsumerConnection extends BaseWebSocketConnection {
         }
     }
 
-    public String sendMessage(final String message) {
+    public void sendMessage(final String message) {
         awaitingMessage.set(false);
         writeMessage(message);
-        return message; //for unit testing
     }
 
     public boolean isTimedOut(final long timeout) {

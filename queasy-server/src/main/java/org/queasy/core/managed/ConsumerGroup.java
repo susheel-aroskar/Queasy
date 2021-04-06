@@ -43,14 +43,14 @@ public class ConsumerGroup implements Managed, Runnable {
         qDbReader.saveCheckpoint();
     }
 
-    public boolean waitForMessage(final ConsumerConnection client) throws InterruptedException {
+    public boolean waitForMessage(final ConsumerConnection client)  {
         final String message = messages.poll();
         if (message != null) {
             client.sendMessage(message);
             return true;
         } else {
             //add client to wait queue
-            clients.put(client);
+            clients.offer(client);
             return false;
         }
     }
@@ -83,8 +83,8 @@ public class ConsumerGroup implements Managed, Runnable {
                     break;
                 }
             }
-            catch (InterruptedException ex) {
-                logger.warn("Interrupted exception while dispatching messages to clients", ex);
+            catch (Exception ex) {
+                logger.warn("Exception while dispatching messages to clients", ex);
                 break;
             }
         }

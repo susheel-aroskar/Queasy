@@ -30,6 +30,8 @@ import java.util.concurrent.TimeUnit;
 
 public class ServerApplication extends Application<ServerConfiguration> {
 
+    public static final String PUBLISH_PATH = "publish";
+    public static final String DEQUEUE_PATH = "dequeue";
 
     public static void main(final String[] args) throws Exception {
         new ServerApplication().run(args);
@@ -76,7 +78,7 @@ public class ServerApplication extends Application<ServerConfiguration> {
         NativeWebSocketServletContainerInitializer.configure(servletCtxHandler, ((servletContext, nativeWebSocketConfiguration) -> {
             // Set up queueWriter websocket handler
             wsConfig.configureWebSocketPolicy(nativeWebSocketConfiguration.getPolicy());
-            nativeWebSocketConfiguration.addMapping("/nq/*", new ProducerWebSocketCreator(wsConfig.getOrigin(),
+            nativeWebSocketConfiguration.addMapping(String.format("/%s/*",PUBLISH_PATH), new ProducerWebSocketCreator(wsConfig.getOrigin(),
                     config.getMaxConnections(), queueWriter));
 
             // Set up consumer groups WebSocket handlers
@@ -85,7 +87,7 @@ public class ServerApplication extends Application<ServerConfiguration> {
                 final ConsumerGroupConfiguration cgConfig = cg.getValue();
                 final QDbReader qDbReader = new QDbReader(qDbWriter, jdbi, writerConfig, cgName, cgConfig, messageCache);
                 final ConsumerGroup consumerGroup = new ConsumerGroup(qDbReader);
-                nativeWebSocketConfiguration.addMapping("/dq/" + cgName,
+                nativeWebSocketConfiguration.addMapping(String.format("/%s/%s/*", DEQUEUE_PATH, cgName),
                         new ConsumerGroupWebSocketCreator(wsConfig.getOrigin(), config.getMaxConnections(), consumerGroup));
                 env.lifecycle().manage(consumerGroup);
                 cgPool.scheduleAtFixedRate(consumerGroup, pollInterval, pollInterval, TimeUnit.MILLISECONDS);
