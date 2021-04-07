@@ -110,7 +110,6 @@ public class QDbReader {
             return false; // Writer hasn't advanced
         }
 
-        readBatchId++;
         final long lastWrittenMessageId = qDbWriter.getLastWrittenMessageId();
         final long oldLastReadMessageId = lastReadMessageId;
         jdbi.useHandle(handle ->
@@ -134,6 +133,7 @@ public class QDbReader {
 
         if (lastReadMessageId > oldLastReadMessageId) {
             // New messages found
+            readBatchId++;
             return true;
         } else {
             // This can happen if writer inserts new messages but none of them match the "query" for this consumer

@@ -6,8 +6,9 @@ package org.queasy;
  */
 public class ToDo {
 
-    //-  Integration test(s)
+    //-  TopicSubscriber topic (Tests)
     //-  QueueTrimmerTask using lifecycle scheduler builder
+    //-  Integration test(s)
     //-  Health check
 
     //-  Replication:
@@ -16,11 +17,8 @@ public class ToDo {
     //      - change message format to <mesg_id>:<original_mesg_id | "">\n<message body>
     //      - return messages from failed over, dead master starting from last persisted ckpt of the dead master
     //      - exchanged heart-beats and checkpoint regularly between connected masters
+    //      - insert checkpoints in normal message streams with qname replaced with "_ckpt"?
 
     //-  Metrics using DW
-
-    //-  Subscriber topic
-
-    //-  #NACK from consumer to push message back on the queue?
 
 }

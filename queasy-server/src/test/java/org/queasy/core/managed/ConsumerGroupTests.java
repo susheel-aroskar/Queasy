@@ -439,7 +439,7 @@ public class ConsumerGroupTests {
         cg.run();
         assertEquals(ImmutableList.of(conn), cg.getClients());
         assertEquals(Collections.emptyList(), cg.getMessages());
-        assertEquals(2L, qDbReader.getReadBatchId());
+        assertEquals(1L, qDbReader.getReadBatchId());
         assertEquals(qDbWriter.getLastWrittenMessageId(), qDbReader.getLastReadMessageId());
         assertEquals(qDbWriter.getLastWrittenMessageId(), readCheckPointFromDb());
         queueWriter.stop();

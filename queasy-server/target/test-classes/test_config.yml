@@ -4,6 +4,9 @@ database:
   properties:
     charSet: UTF-8
 
+server:
+  applicationContextPath: /
+
 hostId: 0
 maxConnections: 1024
 
@@ -18,6 +21,38 @@ writerConfiguration:
 
 
 consumerGroups:
+
+  testCG:
+    query: qname = 'testQ1'
+    fetchBatchSize: 2
+
+  testQ1-CG1:
+    query: qname = 'testQ1'
+    fetchBatchSize: 4
+
+  testQ1-CG2:
+    query: qname = 'testQ1'
+    fetchBatchSize: 8
+
+  testQ2-CG1:
+    query: qname = 'testQ2'
+    fetchBatchSize: 4
+
+
+topics:
+
   testCG:
     query: qname = 'testQ'
+    fetchBatchSize: 2
+
+  topic1-1:
+    query: qname = 'testQ1'
+    fetchBatchSize: 4
+
+  topic2-1:
+    query: qname = 'testQ2'
+    fetchBatchSize: 2
+
+  topic1-2:
+    query: qname = 'testQ1'
     fetchBatchSize: 2

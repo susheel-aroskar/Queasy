@@ -27,7 +27,6 @@ public final class TopicSubscription extends BaseWebSocketConnection {
     @Override
     protected void onConnect() {
         topic.subscribe(this);
-        topic.waitForMessages(this);
     }
 
     @Override
@@ -68,8 +67,4 @@ public final class TopicSubscription extends BaseWebSocketConnection {
         sendNextMessage();
     }
 
-    @Override
-    public void writeFailed(Throwable t) {
-        super.writeFailed(t);
-    }
 }

@@ -72,8 +72,11 @@ public class Topic implements Managed, Runnable {
 
     private boolean loadNextMessageBatch() {
         if (qDbReader.hasMoreMessages()) {
-            messages = new ArrayList<>(fetchBatchSize);
-            return qDbReader.loadNextBatchOfMessages(messages);
+            final ArrayList<String> messages = new ArrayList<>(fetchBatchSize);
+            if (qDbReader.loadNextBatchOfMessages(messages)) {
+                this.messages = messages;
+                return true;
+            }
         }
         return false;
     }
@@ -99,17 +102,16 @@ public class Topic implements Managed, Runnable {
                 int waitingSubs = 0;
                 for (int i = 0; i < subscriberCount; i++) {
                     final TopicSubscription sub = subscribers.poll();
-                    if (sub != null && sub.isConnected()) {
-                        if (waitForMessages(sub)) {
-                            waitingSubs++;
-                        }
+                    if (sub != null && sub.isConnected() && waitForMessages(sub)) {
+                        waitingSubs++;
                     }
                 }
 
                 if ((totalSubs > 0) && ((waitingSubs * 100 / totalSubs) >= quorumPercentage)) {
                     // Quorum reached for fetching the next message batch
+                    messages = null;
                     if (loadNextMessageBatch()) {
-                        continue; // New message batch loaded, continue processing
+                        continue; // New message batch loaded, continue processing in next loop iteration
                     }
                 }
 

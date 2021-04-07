@@ -18,14 +18,14 @@ import java.net.URI;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.queasy.ServerApplication.DEQUEUE_PATH;
-import static org.queasy.ServerApplication.PUBLISH_PATH;
+import static org.queasy.core.bundles.QueasyServerBundle.PUBLISH_PATH;
+import static org.queasy.core.bundles.QueasyServerBundle.DEQUEUE_PATH;
 
 /**
  * @author saroskar
  * Created on: 2021-03-24
  */
-public class ProducerWebSocketTests {
+public class QueueProducerWebSocketTests {
 
     @BeforeEach
     public void setUp() {

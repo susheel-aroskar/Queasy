@@ -32,10 +32,6 @@ public final class QueueWriter implements Managed, Runnable {
         writeTimeout = writerConfig.getWriteTimeout().toMilliseconds();
     }
 
-//    public QDbWriter getQDbWriter() {
-//        return qDbWriter;
-//    }
-
     @Override
     public void start() {
         shutdownFlag = false;

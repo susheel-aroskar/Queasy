@@ -5,6 +5,8 @@ import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
 
+import java.util.Objects;
+
 /**
  * @author saroskar
  * Created on: 2021-03-22
@@ -20,7 +22,7 @@ public abstract class BaseWebSocketCreator implements WebSocketCreator {
     }
 
     protected final boolean checkOrigin(final ServletUpgradeRequest req, final ServletUpgradeResponse resp) {
-        if (origin == null || !origin.equals(req.getOrigin())) {
+        if (!Objects.equals(origin, req.getOrigin())) {
             closeConnection(403, resp);
             return false;
         }

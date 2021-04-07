@@ -8,7 +8,7 @@ import org.queasy.core.managed.QueueWriter;
 
 import java.util.List;
 
-import static org.queasy.ServerApplication.PUBLISH_PATH;
+import static org.queasy.core.bundles.QueasyServerBundle.PUBLISH_PATH;
 
 /**
  * @author saroskar

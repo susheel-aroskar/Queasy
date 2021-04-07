@@ -11,7 +11,7 @@ public class TopicConfiguration extends ConsumerGroupConfiguration {
 
     /**
      * If topic waits for every single subscriber to finish consuming all the messages from the current message batch,
-     * a single slow subscriber will could  back all subscribers for consuming newer messages from the next batch.
+     * a single slow subscriber could  hold back all subscribers for consuming newer messages from the next batch.
      * Instead, topic waits till a configured quorum percentage of consumers have finished consuming the current message
      * batch. Quorum percentage is calculated as (number of subscribers done with current batch / total number of
      * subscribers subscribed to this topic) * 100

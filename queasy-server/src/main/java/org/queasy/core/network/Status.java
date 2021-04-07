@@ -10,6 +10,7 @@ public enum Status {
     BUSY,
     TIMEOUT,
     MESG_DROP,
+    CLOSE,
     ERROR;
 
     private final String status;
