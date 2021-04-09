@@ -12,7 +12,7 @@ import javax.servlet.ServletException;
  */
 public class NoRunTestApplication extends ServerApplication {
     @Override
-    public void run(ServerConfiguration config, Environment env) throws ServletException {
-        // Don't initialize machinery
+    public void run(ServerConfiguration config, Environment env) {
+        // Don't run machinery
     }
 }

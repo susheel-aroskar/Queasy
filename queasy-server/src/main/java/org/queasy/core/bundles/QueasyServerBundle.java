@@ -60,7 +60,7 @@ public class QueasyServerBundle implements ConfiguredBundle<ServerConfiguration>
 
         //Thread pool to handle consumer groups
         final ScheduledExecutorService dispatchPool = env.lifecycle()
-                .scheduledExecutorService("mesg-dispatcher-")
+                .scheduledExecutorService("mesg-dispatcher-%s")
                 .threads(config.getMessageDispatcherThreadPoolSize())
                 .shutdownTime(config.getShutdownGracePeriod())
                 .build();

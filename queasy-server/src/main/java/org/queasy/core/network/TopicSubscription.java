@@ -40,7 +40,7 @@ public final class TopicSubscription extends BaseWebSocketConnection {
             sendStatus(Status.MESG_DROP);
         }
 
-        if (currentMesgIndex < nextBatchId) {
+        if (messageBatchId < nextBatchId) {
             messageBatchId = nextBatchId;
             messages = nextMesgs;
             currentMesgIndex = 0;

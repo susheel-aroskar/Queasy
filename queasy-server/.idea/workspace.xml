@@ -2,31 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f185507-bf12-49cd-ace4-0332bdf80a15" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/queasy/client/BaseQueueClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/queasy/client/ConsumerGroupMember.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/queasy/client/QueasyClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/queasy/client/QueueConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/queasy/client/QueueProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/queasy/client/TopicSubscriber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/queasy/client/TopicSubscription.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyServerBundle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/queasy/integration/IntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/queasy/integration/Consumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/queasy/integration/Producer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/queasy/integration/Subscriber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/config/TopicConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/config/TopicConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/client/QueasyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/client/QueasyClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyServerBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyServerBundle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/Topic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/Topic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/BaseWebSocketCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/BaseWebSocketCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/ProducerWebSocketCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/ProducerWebSocketCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/Status.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/TopicSubscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/core/network/TopicSubscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/queasy/core/network/QueueProducerWebSocketTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/queasy/core/NoRunTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/queasy/core/NoRunTestApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/queasy/integration/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/queasy/integration/IntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/test_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/test_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/test_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test_config.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -42,19 +30,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/QueueProducer.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/IntegrationTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5">
-              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/QueasyClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="78" column="51" selection-start-line="78" selection-start-column="51" selection-end-line="78" selection-end-column="51" />
+            <state relative-caret-position="227">
+              <caret line="104" column="51" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,10 +42,153 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/NoRunTestApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+            <state relative-caret-position="198">
+              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-testing/2.0.20/dropwizard-testing-2.0.20.jar!/io/dropwizard/testing/DropwizardTestSupport.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="293" column="15" selection-start-line="293" selection-start-column="15" selection-end-line="293" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-testing/2.0.20/dropwizard-testing-2.0.20.jar!/io/dropwizard/testing/junit5/DropwizardAppExtension.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16">
+              <caret line="89" column="37" selection-start-line="89" selection-start-column="37" selection-end-line="89" selection-end-column="37" />
+              <folding>
+                <element signature="e#6225#6226#0" expanded="true" />
+                <element signature="e#6253#6254#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.7.1/junit-jupiter-api-5.7.1.jar!/org/junit/jupiter/api/extension/ExtensionContext.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-113">
+              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/src.zip!/java/util/concurrent/CountDownLatch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1863">
+              <caret line="289" column="16" selection-start-line="289" selection-start-column="16" selection-end-line="289" selection-end-column="16" />
+              <folding>
+                <element signature="e#11111#11112#0" expanded="true" />
+                <element signature="e#11148#11149#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/network/TopicSubscription.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/Topic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="108" selection-start-line="101" selection-end-line="108" />
+              <folding>
+                <element signature="e#1340#1341#0" expanded="true" />
+                <element signature="e#1382#1383#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="94" selection-start-line="94" selection-end-line="94" />
+              <folding>
+                <element signature="e#2364#2365#0" expanded="true" />
+                <element signature="e#2398#2399#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/Producer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#952#953#0" expanded="true" />
+                <element signature="e#992#993#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/Subscriber.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#840#841#0" expanded="true" />
+                <element signature="e#871#872#0" expanded="true" />
+                <element signature="e#2079#2080#0" expanded="true" />
+                <element signature="e#2205#2206#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/Consumer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/resources/test_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="936">
+              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="37" column="47" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="47" />
+              <folding>
+                <element signature="e#2524#2525#0" expanded="true" />
+                <element signature="e#2561#2562#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,8 +196,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyServerBundle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-785">
-              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+            <state relative-caret-position="325">
+              <caret line="62" column="61" selection-start-line="62" selection-start-column="61" selection-end-line="62" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -84,115 +206,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/Topic.java">
+        <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-lifecycle/2.0.20/dropwizard-lifecycle-2.0.20.jar!/io/dropwizard/lifecycle/setup/LifecycleEnvironment.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/TopicSubscription.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="20" column="66" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="66" />
-              <folding>
-                <element signature="e#576#577#0" expanded="true" />
-                <element signature="e#630#631#0" expanded="true" />
-                <element signature="e#1055#1056#0" expanded="true" />
-                <element signature="e#1104#1105#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/QueueConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#527#528#0" expanded="true" />
-                <element signature="e#575#576#0" expanded="true" />
-                <element signature="e#839#840#0" expanded="true" />
-                <element signature="e#883#884#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/TopicSubscriber.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#350#351#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/ConsumerGroupMember.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/BaseQueueClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-              <folding>
-                <element signature="e#261#262#0" expanded="true" />
-                <element signature="e#315#316#0" expanded="true" />
-                <element signature="e#359#360#0" expanded="true" />
-                <element signature="e#387#388#0" expanded="true" />
-                <element signature="e#411#412#0" expanded="true" />
-                <element signature="e#445#446#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/IntegrationTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="728">
-              <caret line="91" column="28" selection-start-line="91" selection-start-column="28" selection-end-line="91" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5432#5433#0" expanded="true" />
-                <element signature="e#5493#5494#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-47">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="297">
+              <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -210,9 +227,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>12</find>
-      <find>9.4.37.v20210219</find>
-      <find>PersistedWebSocketCreator</find>
       <find>2.0.20</find>
       <find>changeLogFile</find>
       <find>authentication-required</find>
@@ -240,6 +254,9 @@
       <find>start</find>
       <find>configuration</find>
       <find>header</find>
+      <find>commandInstantiator</find>
+      <find>latch</find>
+      <find>command</find>
     </findStrings>
     <replaceStrings>
       <replace>${dropwizard.version}</replace>
@@ -252,10 +269,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/JsonInsertTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/QueueWriterTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/QueueConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/WriterConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java" />
@@ -267,24 +280,19 @@
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/TopicSubscriptionWebSocketCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java" />
         <option value="$PROJECT_DIR$/config.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/TopicSubscription.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/config/TopicConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/Topic.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/ClientConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/ConsumerGroupClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/ConsumerConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/Status.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/test_config.yml" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/BaseWebSocketCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyBundle.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/ProducerWebSocketCreator.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/network/ProducerWebSocketTests.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyServerBundle.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/ReadConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/QueueClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/BlockingClient.java" />
@@ -297,12 +305,21 @@
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/ConsumerGroupConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/ConsumerGroupMember.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/ProducerConnection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/QueasyClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/Producer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/QueueProducer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/TopicSubscriber.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/network/TopicSubscription.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/client/QueasyClient.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/queasy/core/NoRunTestApplication.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/queasy/integration/Consumer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/queasy/integration/Producer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/queasy/integration/Subscriber.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/test_config.yml" />
         <option value="$PROJECT_DIR$/src/test/java/org/queasy/integration/IntegrationTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyServerBundle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/queasy/core/managed/Topic.java" />
       </list>
     </option>
   </component>
@@ -311,7 +328,7 @@
       <scope name="MyProject" />
     </order>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-100" />
     <option name="y" value="-1057" />
     <option name="width" value="1920" />
@@ -653,6 +670,41 @@
             <path>
               <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.google.guava:guava:30.1-jre" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.google.guava:guava:30.1-jre" type="70bed36:NamedLibraryElementNode" />
+              <item name="guava-30.1-jre.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.google.guava:guava:30.1-jre" type="70bed36:NamedLibraryElementNode" />
+              <item name="guava-30.1-jre.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="google" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.google.guava:guava:30.1-jre" type="70bed36:NamedLibraryElementNode" />
+              <item name="guava-30.1-jre.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="google" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.google.guava:guava:30.1-jre" type="70bed36:NamedLibraryElementNode" />
+              <item name="guava-30.1-jre.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="google" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="collect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Maven: io.dropwizard:dropwizard-core:2.0.20" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
@@ -667,6 +719,14 @@
               <item name="Maven: io.dropwizard:dropwizard-core:2.0.20" type="70bed36:NamedLibraryElementNode" />
               <item name="dropwizard-core-2.0.20.jar" type="462c0819:PsiDirectoryNode" />
               <item name="dropwizard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.dropwizard:dropwizard-core:2.0.20" type="70bed36:NamedLibraryElementNode" />
+              <item name="dropwizard-core-2.0.20.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="dropwizard" type="462c0819:PsiDirectoryNode" />
+              <item name="cli" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
@@ -705,6 +765,32 @@
             <path>
               <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.dropwizard:dropwizard-lifecycle:2.0.20" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.dropwizard:dropwizard-lifecycle:2.0.20" type="70bed36:NamedLibraryElementNode" />
+              <item name="dropwizard-lifecycle-2.0.20.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.dropwizard:dropwizard-lifecycle:2.0.20" type="70bed36:NamedLibraryElementNode" />
+              <item name="dropwizard-lifecycle-2.0.20.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="lifecycle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.dropwizard:dropwizard-lifecycle:2.0.20" type="70bed36:NamedLibraryElementNode" />
+              <item name="dropwizard-lifecycle-2.0.20.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="lifecycle" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Maven: io.dropwizard:dropwizard-migrations:2.0.20" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
@@ -719,6 +805,32 @@
               <item name="Maven: io.dropwizard:dropwizard-migrations:2.0.20" type="70bed36:NamedLibraryElementNode" />
               <item name="dropwizard-migrations-2.0.20.jar" type="462c0819:PsiDirectoryNode" />
               <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.dropwizard:dropwizard-testing:2.0.20" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.dropwizard:dropwizard-testing:2.0.20" type="70bed36:NamedLibraryElementNode" />
+              <item name="dropwizard-testing-2.0.20.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.dropwizard:dropwizard-testing:2.0.20" type="70bed36:NamedLibraryElementNode" />
+              <item name="dropwizard-testing-2.0.20.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="testing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.dropwizard:dropwizard-testing:2.0.20" type="70bed36:NamedLibraryElementNode" />
+              <item name="dropwizard-testing-2.0.20.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="testing" type="462c0819:PsiDirectoryNode" />
+              <item name="junit5" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
@@ -799,6 +911,14 @@
               <item name="Maven: org.eclipse.jetty.websocket:websocket-common:9.4.37.v20210219" type="70bed36:NamedLibraryElementNode" />
               <item name="websocket-common-9.4.37.v20210219.jar" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.eclipse.jetty.websocket:websocket-common:9.4.37.v20210219" type="70bed36:NamedLibraryElementNode" />
+              <item name="websocket-common-9.4.37.v20210219.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="extensions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
@@ -936,6 +1056,14 @@
             <path>
               <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.junit.jupiter:junit-jupiter-api:5.7.1" type="70bed36:NamedLibraryElementNode" />
+              <item name="junit-jupiter-api-5.7.1.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="extension" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="queasy-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Maven: org.junit.platform:junit-platform-commons:1.7.1" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
@@ -1017,6 +1145,7 @@
       <recent name="org.queasy.core" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="org.queasy.integration" />
       <recent name="org.queasy.core" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -1166,8 +1295,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.IntegrationTest" />
         <item itemvalue="JUnit.IntegrationTest.test" />
+        <item itemvalue="JUnit.IntegrationTest" />
         <item itemvalue="Application.Test" />
         <item itemvalue="JUnit.org.queasy in queasy-server" />
         <item itemvalue="JUnit.QueueWriterTest" />
@@ -1185,47 +1314,47 @@
       <option name="presentableId" value="Default" />
       <updated>1616183043029</updated>
       <workItem from="1616183044454" duration="125927000" />
-      <workItem from="1616711643147" duration="154671000" />
+      <workItem from="1616711643147" duration="174062000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="IntegrationTest_test - 2021.04.07 at 14h 07m 09s.xml">
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 13m 10s.xml">
       <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="IntegrationTest_test - 2021.04.07 at 14h 07m 43s.xml">
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 14m 28s.xml">
       <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="IntegrationTest - 2021.04.07 at 14h 08m 49s.xml">
-      <configuration name="IntegrationTest" configurationId="JUnit" />
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 15m 00s.xml">
+      <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="IntegrationTest - 2021.04.07 at 14h 09m 45s.xml">
-      <configuration name="IntegrationTest" configurationId="JUnit" />
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 15m 52s.xml">
+      <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="IntegrationTest - 2021.04.07 at 14h 18m 53s.xml">
-      <configuration name="IntegrationTest" configurationId="JUnit" />
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 16m 27s.xml">
+      <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="IntegrationTest - 2021.04.07 at 15h 21m 37s.xml">
-      <configuration name="IntegrationTest" configurationId="JUnit" />
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 19m 40s.xml">
+      <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="IntegrationTest - 2021.04.07 at 15h 24m 29s.xml">
-      <configuration name="IntegrationTest" configurationId="JUnit" />
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 23m 20s.xml">
+      <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="IntegrationTest - 2021.04.07 at 15h 27m 30s.xml">
-      <configuration name="IntegrationTest" configurationId="JUnit" />
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 25m 07s.xml">
+      <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="IntegrationTest - 2021.04.07 at 15h 31m 34s.xml">
-      <configuration name="IntegrationTest" configurationId="JUnit" />
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 27m 07s.xml">
+      <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="IntegrationTest - 2021.04.07 at 15h 40m 02s.xml">
-      <configuration name="IntegrationTest" configurationId="JUnit" />
+    <history-entry file="IntegrationTest_test - 2021.04.08 at 20h 28m 33s.xml">
+      <configuration name="IntegrationTest.test" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280598000" />
+    <option name="totallyTimeSpent" value="299989000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-100" y="-1057" width="1920" height="1057" extended-state="6" />
+    <frame x="-100" y="-1057" width="1920" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
@@ -1233,7 +1362,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Designer" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.13312034" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.17838125" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32908705" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
@@ -1245,8 +1374,8 @@
       <window_info anchor="bottom" id="GraphQL" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.40339702" />
-      <window_info anchor="bottom" id="Run" order="10" sideWeight="0.49928468" weight="0.61677283" />
-      <window_info anchor="bottom" id="Debug" order="11" weight="0.566879" />
+      <window_info active="true" anchor="bottom" id="Run" order="10" sideWeight="0.49928468" visible="true" weight="0.4373673" />
+      <window_info anchor="bottom" id="Debug" order="11" weight="0.4564756" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="14" />
@@ -1375,10 +1504,10 @@
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java</url>
-          <line>25</line>
+          <url>file://$PROJECT_DIR$/src/test/java/org/queasy/integration/IntegrationTest.java</url>
+          <line>58</line>
           <properties />
-          <option name="timeStamp" value="90" />
+          <option name="timeStamp" value="111" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1388,234 +1517,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-core/2.0.20/dropwizard-core-2.0.20.jar!/io/dropwizard/setup/Bootstrap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-174">
-          <caret line="52" column="47" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-core/2.0.20/dropwizard-core-2.0.20.jar!/io/dropwizard/Application.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="44" column="45" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-servlet/9.4.37.v20210219/jetty-servlet-9.4.37.v20210219.jar!/org/eclipse/jetty/servlet/ServletHandler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="599" selection-start-line="599" selection-end-line="599" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-core/2.0.20/dropwizard-core-2.0.20.jar!/io/dropwizard/cli/EnvironmentCommand.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-core/2.0.20/dropwizard-core-2.0.20.jar!/io/dropwizard/cli/ConfiguredCommand.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-core/2.0.20/dropwizard-core-2.0.20.jar!/io/dropwizard/cli/ServerCommand.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-util/9.4.37.v20210219/jetty-util-9.4.37.v20210219.jar!/org/eclipse/jetty/util/component/AbstractLifeCycle.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="241" column="15" selection-start-line="241" selection-start-column="15" selection-end-line="241" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-migrations/2.0.20/dropwizard-migrations-2.0.20.jar!/io/dropwizard/migrations/MigrationsBundle.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-core/2.0.20/dropwizard-core-2.0.20.jar!/io/dropwizard/server/SimpleServerFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-server/9.4.37.v20210219/websocket-server-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/server/MappedWebSocketCreator.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="10" column="39" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/jakarta/servlet/jakarta.servlet-api/4.0.4/jakarta.servlet-api-4.0.4.jar!/javax/servlet/ServletContainerInitializer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-servlet/9.4.37.v20210219/jetty-servlet-9.4.37.v20210219.jar!/org/eclipse/jetty/servlet/listener/ContainerInitializer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="21" column="89" selection-start-line="21" selection-start-column="89" selection-end-line="21" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-server/9.4.37.v20210219/websocket-server-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/server/NativeWebSocketServletContainerInitializer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-core/2.0.20/dropwizard-core-2.0.20.jar!/io/dropwizard/server/DefaultServerFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="116" selection-start-line="116" selection-end-line="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-servlet/9.4.37.v20210219/websocket-servlet-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/servlet/WebSocketServletFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-server/9.4.37.v20210219/websocket-server-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/server/WebSocketServerFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="178" selection-start-line="178" selection-end-line="178" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-server/9.4.37.v20210219/websocket-server-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/server/NativeWebSocketConfiguration.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="156" selection-start-line="156" selection-end-line="156" />
-          <folding>
-            <element signature="e#5751#5752#0" expanded="true" />
-            <element signature="e#5799#5800#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-client/9.4.37.v20210219/jetty-client-9.4.37.v20210219.jar!/org/eclipse/jetty/client/HttpRequest.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="65" column="29" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-util/9.4.37.v20210219/jetty-util-9.4.37.v20210219.jar!/org/eclipse/jetty/util/component/ContainerLifeCycle.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5644">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-api/9.4.37.v20210219/websocket-api-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/api/WebSocketPolicy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-api/9.4.37.v20210219/websocket-api-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/api/WebSocketListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="7" column="54" lean-forward="true" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-api/9.4.37.v20210219/websocket-api-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/api/WebSocketConnectionListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-client/9.4.37.v20210219/websocket-client-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/client/WebSocketUpgradeRequest.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-client/9.4.37.v20210219/websocket-client-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/client/io/UpgradeListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-common/9.4.37.v20210219/websocket-common-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/common/UpgradeRequestAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-client/9.4.37.v20210219/websocket-client-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/client/WebSocketClient.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="168" selection-start-line="164" selection-end-line="168" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-client/9.4.37.v20210219/websocket-client-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/client/ClientUpgradeRequest.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="107" column="16" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/WebSocketConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
-          <folding>
-            <element signature="e#1318#1319#0" expanded="true" />
-            <element signature="e#1347#1348#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/test_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-server/9.4.37.v20210219/websocket-server-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/server/WebSocketUpgradeFilter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="167" selection-start-line="167" selection-end-line="167" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/src.zip!/java/util/Objects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="e#2468#2469#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-servlet/9.4.37.v20210219/websocket-servlet-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/servlet/ServletUpgradeRequest.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1630,13 +1531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyMigrationBundle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1680,37 +1574,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/TopicSubscription.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="66" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="66" />
-          <folding>
-            <element signature="e#576#577#0" expanded="true" />
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#1055#1056#0" expanded="true" />
-            <element signature="e#1104#1105#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/QueueConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#527#528#0" expanded="true" />
-            <element signature="e#575#576#0" expanded="true" />
-            <element signature="e#839#840#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/BaseQueueClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+        <state relative-caret-position="144">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
           <folding>
             <element signature="e#261#262#0" expanded="true" />
             <element signature="e#315#316#0" expanded="true" />
@@ -1722,41 +1589,371 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/ConsumerGroupMember.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/TopicSubscriber.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+        <state relative-caret-position="162">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#350#351#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueTrimmer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/QueueConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#527#528#0" expanded="true" />
+            <element signature="e#575#576#0" expanded="true" />
+            <element signature="e#839#840#0" expanded="true" />
+            <element signature="e#883#884#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/QueueProducer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        <state relative-caret-position="-233">
+          <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/QueasyClient.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/ConsumerGroupMember.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="78" column="51" selection-start-line="78" selection-start-column="51" selection-end-line="78" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-129">
+          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/network/ConsumerGroupWebSocketCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/network/ProducerConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="37" column="35" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/network/ConsumerConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ToDo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="65" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/ConsumerGroup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
+        <state relative-caret-position="18">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/QueueWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-47">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="452">
+          <caret line="56" column="38" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/db/QDbWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-testing/2.0.20/dropwizard-testing-2.0.20.jar!/io/dropwizard/testing/junit5/DropwizardExtensionsSupport.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2290">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyMigrationBundle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/managed/ConsumerGroupTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="58" column="32" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-migrations/2.0.20/dropwizard-migrations-2.0.20.jar!/io/dropwizard/migrations/DbCommand.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-core/2.0.20/dropwizard-core-2.0.20.jar!/io/dropwizard/cli/CheckCommand.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-core/2.0.20/dropwizard-core-2.0.20.jar!/io/dropwizard/cli/ServerCommand.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-testing/2.0.20/dropwizard-testing-2.0.20.jar!/io/dropwizard/testing/ResourceHelpers.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/src.zip!/java/util/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="359" column="12" selection-start-line="359" selection-start-column="12" selection-end-line="359" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/src.zip!/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="324" column="11" selection-start-line="324" selection-start-column="11" selection-end-line="324" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/src.zip!/java/util/HashSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="218" column="19" selection-start-line="218" selection-start-column="19" selection-end-line="218" selection-end-column="19" />
+          <folding>
+            <element signature="e#9061#9062#0" expanded="true" />
+            <element signature="e#9109#9110#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/config/TopicConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="32" />
+          <folding>
+            <element signature="e#879#880#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-common/9.4.37.v20210219/websocket-common-9.4.37.v20210219.jar!/org/eclipse/jetty/websocket/common/extensions/ExtensionStack.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="341" column="21" selection-start-line="341" selection-start-column="21" selection-end-line="341" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/TopicSubscription.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+          <folding>
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#597#598#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/QueasyClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="77" column="28" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/30.1-jre/guava-30.1-jre.jar!/com/google/common/collect/Lists.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="146" column="36" selection-start-line="146" selection-start-column="36" selection-end-line="146" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/src.zip!/java/util/concurrent/CountDownLatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1863">
+          <caret line="289" column="16" selection-start-line="289" selection-start-column="16" selection-end-line="289" selection-end-column="16" />
+          <folding>
+            <element signature="e#11111#11112#0" expanded="true" />
+            <element signature="e#11148#11149#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/network/TopicSubscription.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/db/QDbReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+          <folding>
+            <element signature="e#2364#2365#0" expanded="true" />
+            <element signature="e#2398#2399#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.7.1/junit-jupiter-api-5.7.1.jar!/org/junit/jupiter/api/extension/ExtensionContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-113">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-testing/2.0.20/dropwizard-testing-2.0.20.jar!/io/dropwizard/testing/DropwizardTestSupport.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="293" column="15" selection-start-line="293" selection-start-column="15" selection-end-line="293" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-testing/2.0.20/dropwizard-testing-2.0.20.jar!/io/dropwizard/testing/junit5/DropwizardAppExtension.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="89" column="37" selection-start-line="89" selection-start-column="37" selection-end-line="89" selection-end-column="37" />
+          <folding>
+            <element signature="e#6225#6226#0" expanded="true" />
+            <element signature="e#6253#6254#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/core/NoRunTestApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/Consumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/Producer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#952#953#0" expanded="true" />
+            <element signature="e#992#993#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/IntegrationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="104" column="51" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/test_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="37" column="47" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="47" />
+          <folding>
+            <element signature="e#2524#2525#0" expanded="true" />
+            <element signature="e#2561#2562#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/Subscriber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#840#841#0" expanded="true" />
+            <element signature="e#871#872#0" expanded="true" />
+            <element signature="e#2079#2080#0" expanded="true" />
+            <element signature="e#2205#2206#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/dropwizard/dropwizard-lifecycle/2.0.20/dropwizard-lifecycle-2.0.20.jar!/io/dropwizard/lifecycle/setup/LifecycleEnvironment.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyServerBundle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="62" column="61" selection-start-line="62" selection-start-column="61" selection-end-line="62" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1765,47 +1962,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/managed/Topic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/core/bundles/QueasyServerBundle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-785">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        <state relative-caret-position="237">
+          <caret line="108" selection-start-line="101" selection-end-line="108" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/ServerApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/queasy/client/TopicSubscriber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#350#351#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/queasy/integration/IntegrationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="91" column="28" selection-start-line="91" selection-start-column="28" selection-end-line="91" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5432#5433#0" expanded="true" />
-            <element signature="e#5493#5494#0" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1382#1383#0" expanded="true" />
           </folding>
         </state>
       </provider>

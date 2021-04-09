@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class QueueWriter implements Managed, Runnable {
 
-    private QDbWriter qDbWriter;
+    private final QDbWriter qDbWriter;
     private final ArrayBlockingQueue<String[]> queue;
     private final long writeTimeout;
     private Thread writerThread;

@@ -20,5 +20,6 @@ public class ToDo {
     //      - insert checkpoints in normal message streams with qname replaced with "_ckpt"?
 
     //-  Metrics using DW
+    //-  Make sure SQLite is in WAL mode (PRAGMA synchronous=OFF ?)
 
 }

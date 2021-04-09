@@ -75,10 +75,12 @@ public final class QueasyClient implements Managed {
     }
 
 
-    public void subscribeToTopic(final String baseURI, final String topicName,
+    public TopicSubscription subscribeToTopic(final String baseURI, final String topicName,
                                  final TopicSubscriber topicSubscriber) throws Exception {
-        final Future<Session> f = connect(baseURI, SUBSCRIBE_PATH, topicName, new TopicSubscription(topicSubscriber));
+        final TopicSubscription subscription = new TopicSubscription(topicSubscriber);
+        final Future<Session> f = connect(baseURI, SUBSCRIBE_PATH, topicName, subscription);
         f.get();
+        return subscription;
     }
 
 }

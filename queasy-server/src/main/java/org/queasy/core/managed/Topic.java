@@ -21,7 +21,7 @@ public class Topic implements Managed, Runnable {
     private final int quorumPercentage;
     private final QDbReader qDbReader;
     private final LinkedBlockingQueue<TopicSubscription> subscribers;
-    private AtomicInteger totalSubscribers;
+    private final AtomicInteger totalSubscribers;
     private volatile ArrayList<String> messages;
 
     private static final Logger logger = LoggerFactory.getLogger(Topic.class);
