@@ -45,8 +45,8 @@ public class QDbReader {
         this.ckptName = cgName;
         this.fetchSize = cgConfig.getFetchBatchSize();
         this.timeout = cgConfig.getTimeOut().toMilliseconds();
-        this.selectSQL = String.format("SELECT id, mesg FROM %s WHERE id > ? AND %s AND type is NULL",
-                writerConfig.getTableName(), cgConfig.getQuery());
+        this.selectSQL = String.format("SELECT id, mesg FROM %s WHERE id > ? AND %s AND type is NULL LIMIT %s",
+                writerConfig.getTableName(), cgConfig.getQuery(), fetchSize);
         this.messageCache = cache;
     }
 

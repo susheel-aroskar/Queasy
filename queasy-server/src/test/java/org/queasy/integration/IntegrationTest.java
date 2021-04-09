@@ -6,7 +6,6 @@ import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit5.DropwizardAppExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +20,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -98,12 +96,12 @@ public class IntegrationTest {
         final Random random = new Random();
         final CountDownLatch latch = new CountDownLatch(1 + 1 + 1 + 3 + 2 + 2); // 1 for each consumer group + 1 for each subscriber
 
-        final int p1MesgCount = random.nextInt(229);
+        final int p1MesgCount = Math.abs(random.nextInt(229))+1;
         final Producer p1 = new Producer(queasyClient, "testQ1", p1MesgCount);
-        final int p2MesgCount = random.nextInt(113);
-        final Producer p2 = new Producer(queasyClient, "testQ2", random.nextInt(p2MesgCount));
-        final int p3MesgCount = random.nextInt(73);
-        final Producer p3 = new Producer(queasyClient, "testQ1", random.nextInt(p3MesgCount));
+        final int p2MesgCount = Math.abs(random.nextInt(113))+1;
+        final Producer p2 = new Producer(queasyClient, "testQ2", p2MesgCount);
+        final int p3MesgCount = Math.abs(random.nextInt(73))+1;
+        final Producer p3 = new Producer(queasyClient, "testQ1", p3MesgCount);
 
         final Consumer q1cg1_2 = new Consumer(queasyClient, "testQ1-CG1", latch);
         final Consumer q1cg1_1 = new Consumer(queasyClient, "testQ1-CG1", latch);
@@ -133,8 +131,8 @@ public class IntegrationTest {
         final long start = System.currentTimeMillis();
         latch.await();
         final long stop = System.currentTimeMillis();
-        System.err.println("Published " + (p1MesgCount+p2MesgCount+p3MesgCount)+" messages.");
-        System.err.println("Finished in " + (stop - start) + " ms after last message was published.");
+        System.err.print("\nPublished " + (p1MesgCount + p2MesgCount + p3MesgCount) + " messages.");
+        System.err.println(" Finished in " + (stop - start) + " ms after last message was published.");
         queasyClient.stop();
 
         final Set<String> producedMesgsQ1 = mergeNonOverlappingSet(p1.getMessages(), p3.getMessages());

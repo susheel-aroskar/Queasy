@@ -16,7 +16,7 @@ cacheConfiguration:
 writerConfiguration:
   tableName: queasy_q
   ringBufferSize: 1024
-  insertBatchSize: 2
+  insertBatchSize: 256
   maxSize: 10000
 
 
@@ -28,35 +28,35 @@ consumerGroups:
 
   testQ1-CG1:
     query: qname = 'testQ1'
-    fetchBatchSize: 4
+    fetchBatchSize: 256
 
   testQ1-CG2:
     query: qname = 'testQ1'
-    fetchBatchSize: 8
+    fetchBatchSize: 256
 
   testQ2-CG1:
     query: qname = 'testQ2'
-    fetchBatchSize: 4
+    fetchBatchSize: 256
 
 
 topics:
 
   testCG:
     query: qname = 'testQ'
-    fetchBatchSize: 2
+    fetchBatchSize: 256
     quorumPercentage: 100
 
   topic1-1:
     query: qname = 'testQ1'
-    fetchBatchSize: 4
+    fetchBatchSize: 256
 #    quorumPercentage: 100
 
   topic2-1:
     query: qname = 'testQ2'
-    fetchBatchSize: 2
+    fetchBatchSize: 256
 #    quorumPercentage: 100
 
   topic1-2:
     query: qname = 'testQ1'
-    fetchBatchSize: 2
+    fetchBatchSize: 256
 #    quorumPercentage: 100
